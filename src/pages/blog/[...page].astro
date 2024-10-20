@@ -1,6 +1,5 @@
 ---
 import Blogcard from '@/components/blogcard.astro';
-import Cta from '@/components/cta.astro';
 import SectionHead from '@/components/sectionhead.astro';
 import Pagination from '@/components/ui/pagination.astro';
 import {
@@ -38,5 +37,4 @@ const { page } = Astro.props as { page: BlogPage };
       <p class='text-sm'>Page {page.currentPage} of {page.lastPage}</p>
     </div>
   </Container>
-  <Cta />
 </Layout>
