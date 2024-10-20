@@ -1,0 +1,34 @@
+---
+import Sectionhead from '@/components/sectionhead.astro';
+import Link from '@/components/ui/link.astro';
+import Container from '@/layouts/Container.astro';
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout
+  title='404: Digital Space Lost - Return to Known Cyberspace'
+  description="Oops! This page doesn't exist or has relocated. Don't worry, we can help navigate you back. Return to the homepage or search for what you need."
+>
+  <Container>
+    <Sectionhead>
+      <Fragment slot='title'>404: Looks like you got lost</Fragment>
+      <Fragment slot='subtitle'>Looks like this page doesn't exist</Fragment>
+    </Sectionhead>
+    <div class='flex w-1/3 mx-auto my-12'>
+      <Link href='/' style='secondary'> Return Home </Link>
+    </div>
+    <div
+      class='mb-24'
+      style='width:100%;height:0;padding-bottom:43%;position:relative;'
+    >
+      <iframe
+        src='https://giphy.com/embed/3o7aTskHEUdgCQAXde'
+        width='100%'
+        height='100%'
+        style='position:absolute'
+        frame-border='0'
+        class='giphy-embed'
+        allow-FullScreen></iframe>
+    </div>
+  </Container>
+</Layout>

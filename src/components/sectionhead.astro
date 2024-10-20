@@ -1,0 +1,22 @@
+---
+const { align = 'center' } = Astro.props;
+---
+
+<div
+  class:list={[
+    align === 'center' && 'sm:text-center',
+    align === 'left' && 'sm:text-left',
+    align === 'right' && 'sm:text-right',
+  ]}
+>
+  <p
+    class='uppercase font-bold text-accent text-opacity-100 mb-4 md:mb-5 lg:mb-4 tracking-widest text-sm lg:text-lg xl:mb-8 xl:text-2xl'
+  >
+    <slot name='subtitle'>Subtitle</slot>
+  </p>
+  <h1
+    class='font-heading text-primary uppercase font-bold text-2xl sm:text-3xl md:text-5xl lg:text-7xl tracking-tight'
+  >
+    <slot name='title'>Title</slot>
+  </h1>
+</div>

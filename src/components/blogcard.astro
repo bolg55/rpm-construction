@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+import { formatDate } from '@/utils/formatDate';
+
+const { post, index } = Astro.props;
+const { remarkPluginFrontmatter } = await post.render();
+const minutesRead = remarkPluginFrontmatter?.minutesRead;
+const { title, publishedDate, author, image, category, description } =
+  post.data;
+const date = formatDate(publishedDate);
+const href = `/blog/${post.slug}`;
+
+// const formattedTitle = title.replace(/-/g, ' ');
+---
+
+<li>
+  <a href={href}>
+    <div class='grid md:grid-cols-2 gap-5 md:gap-10 items-center'>
+      <Image
+        src={image.src}
+        alt={image.alt}
+        width={600}
+        height={300}
+        quality={80}
+        format='webp'
+        loading={index <= 2 ? 'eager' : 'lazy'}
+        decoding={index <= 2 ? 'sync' : 'async'}
+        class='w-full rounded-md aspect-video object-cover'
+      />
+      <div>
+        <span
+          class='text-accent uppercase tracking-widest text-sm font-semibold'
+        >
+          {category}
+        </span>
+
+        <h2
+          class='text-primary font-heading text-3xl font-semibold tracking-tight mt-1'
+        >
+          {title}
+        </h2>
+
+        {minutesRead && <span class='text-primary text-sm'>{minutesRead}</span>}
+        <div class='flex gap-2 mt-3'>
+          <span class='text-primary'>
+            {author}
+          </span>
+          <span class='text-primary'>•</span>
+          <time class='text-primary' datetime={date}>
+            {date}
+          </time>
+        </div>
+        <p class='text-primary mt-3'>{description}</p>
+      </div>
+    </div>
+  </a>
+</li>

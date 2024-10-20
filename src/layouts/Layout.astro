@@ -1,0 +1,30 @@
+---
+import '@fontsource-variable/montserrat';
+import '@fontsource-variable/inter';
+import type { Post } from '@/interfaces/blog-interface';
+import Head from './Head.astro';
+import Navbar from './navbar/navbar.astro';
+import Footer from './Footer.astro';
+import TwSizeIndicator from '@/utils/TwSizeIndicator.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: { src: string; alt: string };
+  frontmatter?: Post;
+  robots?: boolean;
+}
+
+const { title, description, image, frontmatter, robots } = Astro.props;
+---
+
+<!doctype html>
+<html lang='en'>
+  <Head {title} {description} {image} {frontmatter} {robots} />
+  <body class='bg-background'>
+    <TwSizeIndicator />
+    <Navbar />
+    <slot />
+    <Footer />
+  </body>
+</html>
