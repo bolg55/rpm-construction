@@ -14,11 +14,6 @@ const menuItems = [
     path: '/testimonials',
     children: [],
   },
-  {
-    title: 'Contact Us',
-    path: '/contact',
-    children: [],
-  },
 ];
 
 export default menuItems;

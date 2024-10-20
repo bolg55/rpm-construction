@@ -41,7 +41,7 @@ import Link from './ui/link.astro';
     </div>
   </div>
   <div class='overflow-hidden'>
-    <div class='mx-auto max-w-7xl px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-32'>
+    <div class='mx-auto max-w-7xl px-2 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-32'>
       <div
         class='mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center'
       >
@@ -58,9 +58,9 @@ import Link from './ui/link.astro';
             Elmira, Ontario and the surrounding areas since 1991. We specialize
             in custom home renovations, additions, and new builds.
           </p>
-          <div class='mt-10 flex items-center gap-x-6'>
-            <Link href='/contact' style='primary'>Request a quote</Link>
-            <Link href='/gallery' style='secondary'
+          <div class='mt-10 flex items-center gap-x-4 lg:gap-x-6'>
+            <Link href='/contact' style='primary' class='sm:w-2/3 lg:w-1/2'>Request a quote</Link>
+            <Link href='/gallery' style='plain' class='hidden lg:inline-block'
               >See more <span aria-hidden='true'>→</span></Link
             >
           </div>
