@@ -1,20 +1,14 @@
 ---
-import Sectionhead from '@/components/sectionhead.astro';
-import Container from '@/layouts/Container.astro';
-import Layout from '@/layouts/Layout.astro';
+import PageLayout from '@/layouts/PageLayout.astro';
 import TestimonialsComponent from '@/components/testimonials.astro';
-
-function cn(...classes: string[]) {
-  return classes.filter(Boolean).join(' ');
-}
 ---
 
-<Layout title='RPM | Testimonials' description='What our customers are saying.'>
-  <Container>
-    <Sectionhead>
-      <Fragment slot='title'>Testimonials</Fragment>
-      <Fragment slot='subtitle'>What our customers are saying</Fragment>
-    </Sectionhead>
-    <TestimonialsComponent />
-  </Container>
-</Layout>
+<PageLayout
+  title='RPM | Testimonials'
+  description='What our customers are saying.'
+  pageTitle='Testimonials'
+  subtitle='What our customers are saying'
+  whiteBG={true}
+>
+  <TestimonialsComponent />
+</PageLayout>

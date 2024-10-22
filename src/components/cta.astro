@@ -1,8 +1,9 @@
 ---
+const { class: className } = Astro.props;
 import AnimatedButton from './ui/animated-button.astro';
 ---
 
-<div class='relative'>
+<div class:list={['relative', className]}>
   <!-- Red section with diagonal cut -->
   <div
     class='bg-accent text-white py-14 sm:py-16

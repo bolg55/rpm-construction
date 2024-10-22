@@ -1,8 +1,7 @@
 ---
 import PostHeader from '@/components/postheader.astro';
 import Button from '@/components/ui/button.astro';
-import Container from '@/layouts/Container.astro';
-import Layout from '@/layouts/Layout.astro';
+import BlogLayout from '@/layouts/BlogLayout.astro';
 import { type CollectionEntry, getCollection } from 'astro:content';
 
 export const getStaticPaths = async () => {
@@ -34,32 +33,30 @@ const {
 } = frontmatter;
 ---
 
-<Layout {title} {description} frontmatter={post.data}>
-  <Container class='mb-16 md:mb-24'>
-    <div class='max-w-screen-lg mx-auto'>
-      <Button
-        type='button'
-        onclick='javascript:history.back()'
-        style='plain'
-        size='link'
-      >
-        &larr; Back to blog
-      </Button>
-    </div>
-    <PostHeader
-      {title}
-      {description}
-      {publishedDate}
-      {author}
-      {category}
-      {tags}
-      {image}
-      {minutesRead}
-    />
-    <article
-      class='mx-auto md:prose-lg mt-6 max-w-screen-lg prose prose-a:text-accent prose-a:no-underline hover:prose-a:text-accent transition'
+<BlogLayout {title} {description} frontmatter={post.data} whiteBG={true}>
+  <div class='max-w-screen-lg mx-auto'>
+    <Button
+      type='button'
+      onclick='javascript:history.back()'
+      style='plain'
+      size='link'
     >
-      <Content />
-    </article>
-  </Container>
-</Layout>
+      &larr; Back to blog
+    </Button>
+  </div>
+  <PostHeader
+    {title}
+    {description}
+    {publishedDate}
+    {author}
+    {category}
+    {tags}
+    {image}
+    {minutesRead}
+  />
+  <article
+    class='mx-auto md:prose-lg mt-6 max-w-screen-lg prose prose-a:text-accent prose-a:no-underline hover:prose-a:text-accent transition'
+  >
+    <Content />
+  </article>
+</BlogLayout>

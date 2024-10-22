@@ -1,16 +1,17 @@
 ---
 import Hero from '@/components/hero.astro';
+import BackgroundStyle from '@/components/ui/background-style.astro';
 import Container from '@/layouts/Container.astro';
-import Layout from '@/layouts/Layout.astro';
+import MainLayout from '@/layouts/MainLayout.astro';
 ---
 
-<Layout
+<MainLayout
   title='RPM Construction LTD. | Elmira, Ontario'
   description='RPM Construction LTD. is a family-owned and operated business that has been serving Elmira, Ontario and the surrounding areas since 1991.'
 >
-  <Container>
-    <main>
+  <BackgroundStyle>
+    <Container>
       <Hero />
-    </main>
-  </Container>
-</Layout>
+    </Container>
+  </BackgroundStyle>
+</MainLayout>
