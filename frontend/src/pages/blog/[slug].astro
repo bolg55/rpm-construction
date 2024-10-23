@@ -1,0 +1,62 @@
+---
+import PostHeader from '@/components/postheader.astro';
+import Button from '@/components/ui/button.astro';
+import BlogLayout from '@/layouts/BlogLayout.astro';
+import { type CollectionEntry, getCollection } from 'astro:content';
+
+export const getStaticPaths = async () => {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map((post: CollectionEntry<'blog'>) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+};
+
+interface Props {
+  frontmatter: { minutesRead: string };
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+
+const { Content, remarkPluginFrontmatter: frontmatter } = await post.render();
+
+const {
+  title,
+  description,
+  author,
+  publishedDate,
+  category,
+  tags,
+  image,
+  minutesRead,
+} = frontmatter;
+---
+
+<BlogLayout {title} {description} frontmatter={post.data} whiteBG={true}>
+  <div class='max-w-screen-lg mx-auto'>
+    <Button
+      type='button'
+      onclick='javascript:history.back()'
+      style='plain'
+      size='link'
+    >
+      &larr; Back to blog
+    </Button>
+  </div>
+  <PostHeader
+    {title}
+    {description}
+    {publishedDate}
+    {author}
+    {category}
+    {tags}
+    {image}
+    {minutesRead}
+  />
+  <article
+    class='mx-auto md:prose-lg mt-6 max-w-screen-lg prose prose-a:text-accent prose-a:no-underline hover:prose-a:text-accent transition'
+  >
+    <Content />
+  </article>
+</BlogLayout>

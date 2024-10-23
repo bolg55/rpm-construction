@@ -1,0 +1,54 @@
+---
+const COMPANY = 'RPM Construction LTD';
+import { footerData } from '@/data/footerData';
+import Container from './Container.astro';
+import FooterIcons from '@/components/ui/footer-icons.astro';
+---
+
+<footer
+  class='bg-footer-background text-accent'
+  aria-labelledby='footer-heading'
+>
+  <Container>
+    <h2 id='footer-heading' class='sr-only'>Footer</h2>
+    <div class='lg:pt-16'>
+      <div class='xl:grid xl:grid-cols-1 xl:gap-8'>
+        <div
+          class='mt-16 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8 xl:col-span-2 xl:mt-0'
+        >
+          {
+            footerData.map((section) => (
+              <div>
+                <h3 class='font-heading text-xl text-footer-text mb-2'>
+                  {section.title}
+                </h3>
+                <ul role='list' class='mb-6'>
+                  {section.links.map((link) => (
+                    <li class='pt-2'>
+                      <a
+                        href={link.path}
+                        class='lg:text-base transition-all text-footer-text hover:text-accent'
+                      >
+                        {link.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </Container>
+  <Container class='md:flex md:items-center md:justify-between'>
+    <div class='flex space-x-6 md:order-3'>
+      <FooterIcons />
+    </div>
+
+    <p class='mt-4 text-sm text-footer-text md:order-1 md:mt-0'>
+      &copy; {new Date().getFullYear()}
+      {COMPANY}. All rights reserved.
+    </p>
+  </Container>
+</footer>

@@ -1,0 +1,29 @@
+---
+import Cta from '@/components/cta.astro';
+import BackgroundStyle from '@/components/ui/background-style.astro';
+import type { Post } from '@/interfaces/blog-interface';
+import Container from './Container.astro';
+import MainLayout from './MainLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: { src: string; alt: string };
+  frontmatter?: Post;
+  robots?: boolean;
+  whiteBG?: boolean;
+}
+
+const { title, description, image, frontmatter, robots, whiteBG } = Astro.props;
+
+const pathname = Astro.url.pathname;
+---
+
+<MainLayout {title} {description} {image} {frontmatter} {robots}>
+  <BackgroundStyle>
+    <Container>
+      <slot />
+    </Container>
+  </BackgroundStyle>
+  <Cta class={whiteBG && 'bg-white'} />
+</MainLayout>
