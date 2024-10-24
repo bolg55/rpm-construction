@@ -18,6 +18,29 @@ export interface BrandCompanyInfo extends Struct.ComponentSchema {
   };
 }
 
+export interface BrandGlobalSeo extends Struct.ComponentSchema {
+  collectionName: 'components_brand_global_seos';
+  info: {
+    displayName: 'GlobalSEO';
+  };
+  attributes: {
+    description: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 160;
+        minLength: 3;
+      }>;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    jsonData: Schema.Attribute.JSON & Schema.Attribute.Required;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 65;
+        minLength: 3;
+      }>;
+  };
+}
+
 export interface BrandLogo extends Struct.ComponentSchema {
   collectionName: 'components_brand_logos';
   info: {
@@ -145,7 +168,8 @@ export interface UiNavBar extends Struct.ComponentSchema {
     icon: 'apps';
   };
   attributes: {
-    ctaLink: Schema.Attribute.Component<'ui.link', false>;
+    ctaLink: Schema.Attribute.Component<'ui.link', false> &
+      Schema.Attribute.Required;
     navItems: Schema.Attribute.Relation<'oneToMany', 'api::nav-item.nav-item'>;
   };
 }
@@ -154,6 +178,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'brand.company-info': BrandCompanyInfo;
+      'brand.global-seo': BrandGlobalSeo;
       'brand.logo': BrandLogo;
       'brand.social': BrandSocial;
       'ui.button': UiButton;

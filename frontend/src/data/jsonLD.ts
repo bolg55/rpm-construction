@@ -1,7 +1,8 @@
 import type { Post } from '@/interfaces/blog-interface';
+import { fetchStrapiData } from '@/queries/strapiQueries';
 
-const res = await fetch('http://localhost:1337/api/seo');
-const { data } = await res.json();
+const data = await fetchStrapiData('/global');
+const { seo } = data;
 
 const jsonLDGenerator = ({
   type,
@@ -36,7 +37,7 @@ const jsonLDGenerator = ({
               </script>`;
   }
   return `<script type="application/ld+json">
-          ${JSON.stringify(data.jsonData, null, 2)}
+        ${JSON.stringify(seo?.jsonData, null, 2)}
           </script>`;
 };
 
