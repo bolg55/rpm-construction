@@ -32,6 +32,10 @@
     },
     "url": {
       "type": "string"
+    },
+    "twitterHandle": {
+      "type": "string",
+      "default": "@twitter"
     }
   }
 }

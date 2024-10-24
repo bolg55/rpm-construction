@@ -14,6 +14,8 @@ export interface BrandCompanyInfo extends Struct.ComponentSchema {
     logo: Schema.Attribute.Component<'brand.logo', false>;
     phone: Schema.Attribute.String;
     socialMedia: Schema.Attribute.Component<'brand.social', true>;
+    twitterHandle: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'@twitter'>;
     url: Schema.Attribute.String;
   };
 }
