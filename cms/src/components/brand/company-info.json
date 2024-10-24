@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_brand_company_infos",
+  "info": {
+    "displayName": "CompanyInfo",
+    "icon": "command",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "logo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "brand.logo"
+    },
+    "socialMedia": {
+      "type": "component",
+      "repeatable": true,
+      "component": "brand.social"
+    },
+    "companyName": {
+      "type": "string",
+      "required": true
+    },
+    "foundingDate": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "url": {
+      "type": "string"
+    }
+  }
+}

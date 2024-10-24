@@ -1,5 +1,23 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface BrandCompanyInfo extends Struct.ComponentSchema {
+  collectionName: 'components_brand_company_infos';
+  info: {
+    description: '';
+    displayName: 'CompanyInfo';
+    icon: 'command';
+  };
+  attributes: {
+    companyName: Schema.Attribute.String & Schema.Attribute.Required;
+    email: Schema.Attribute.Email;
+    foundingDate: Schema.Attribute.String;
+    logo: Schema.Attribute.Component<'brand.logo', false>;
+    phone: Schema.Attribute.String;
+    socialMedia: Schema.Attribute.Component<'brand.social', true>;
+    url: Schema.Attribute.String;
+  };
+}
+
 export interface BrandLogo extends Struct.ComponentSchema {
   collectionName: 'components_brand_logos';
   info: {
@@ -70,13 +88,12 @@ export interface UiCta extends Struct.ComponentSchema {
 export interface UiFooter extends Struct.ComponentSchema {
   collectionName: 'components_ui_footers';
   info: {
+    description: '';
     displayName: 'Footer';
     icon: 'arrowDown';
   };
   attributes: {
-    company: Schema.Attribute.String;
     section: Schema.Attribute.Component<'ui.footer-section', true>;
-    socialMedia: Schema.Attribute.Component<'brand.social', true>;
   };
 }
 
@@ -129,15 +146,14 @@ export interface UiNavBar extends Struct.ComponentSchema {
   };
   attributes: {
     ctaLink: Schema.Attribute.Component<'ui.link', false>;
-    logo: Schema.Attribute.Component<'brand.logo', false>;
     navItems: Schema.Attribute.Relation<'oneToMany', 'api::nav-item.nav-item'>;
-    title: Schema.Attribute.String;
   };
 }
 
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'brand.company-info': BrandCompanyInfo;
       'brand.logo': BrandLogo;
       'brand.social': BrandSocial;
       'ui.button': UiButton;

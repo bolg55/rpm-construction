@@ -2,22 +2,15 @@
   "collectionName": "components_ui_footers",
   "info": {
     "displayName": "Footer",
-    "icon": "arrowDown"
+    "icon": "arrowDown",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "company": {
-      "type": "string"
-    },
     "section": {
       "type": "component",
       "repeatable": true,
       "component": "ui.footer-section"
-    },
-    "socialMedia": {
-      "type": "component",
-      "repeatable": true,
-      "component": "brand.social"
     }
   }
 }

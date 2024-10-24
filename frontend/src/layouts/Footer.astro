@@ -1,8 +1,20 @@
 ---
-const COMPANY = 'RPM Construction LTD';
-import { footerData } from '@/data/footerData';
-import Container from './Container.astro';
 import FooterIcons from '@/components/ui/footer-icons.astro';
+import Container from './Container.astro';
+
+interface FooterSection {
+  title: string;
+  links: {
+    title: string;
+    path: string;
+    children?: {
+      title?: string;
+      path?: string;
+    }[];
+  }[];
+}
+
+const { footer, socialMedia, companyName } = Astro.props;
 ---
 
 <footer
@@ -17,7 +29,7 @@ import FooterIcons from '@/components/ui/footer-icons.astro';
           class='mt-16 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8 xl:col-span-2 xl:mt-0'
         >
           {
-            footerData.map((section) => (
+            footer.section.map((section: FooterSection) => (
               <div>
                 <h3 class='font-heading text-xl text-footer-text mb-2'>
                   {section.title}
@@ -25,12 +37,29 @@ import FooterIcons from '@/components/ui/footer-icons.astro';
                 <ul role='list' class='mb-6'>
                   {section.links.map((link) => (
                     <li class='pt-2'>
-                      <a
-                        href={link.path}
-                        class='lg:text-base transition-all text-footer-text hover:text-accent'
-                      >
-                        {link.title}
-                      </a>
+                      {/* Render only the children if they exist */}
+                      {(link.children ?? []).length > 0 ? (
+                        <ul>
+                          {(link.children ?? []).map((childLink) => (
+                            <li class='pt-2'>
+                              <a
+                                href={childLink.path}
+                                class='lg:text-base transition-all text-footer-text hover:text-accent'
+                              >
+                                {childLink.title}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        // Otherwise, render the parent link
+                        <a
+                          href={link.path}
+                          class='lg:text-base transition-all text-footer-text hover:text-accent'
+                        >
+                          {link.title}
+                        </a>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -41,14 +70,13 @@ import FooterIcons from '@/components/ui/footer-icons.astro';
       </div>
     </div>
   </Container>
+
   <Container class='md:flex md:items-center md:justify-between'>
-    <div class='flex space-x-6 md:order-3'>
-      <FooterIcons />
-    </div>
+    <FooterIcons socials={socialMedia} />
 
     <p class='mt-4 text-sm text-footer-text md:order-1 md:mt-0'>
       &copy; {new Date().getFullYear()}
-      {COMPANY}. All rights reserved.
+      {companyName} All rights reserved.
     </p>
   </Container>
 </footer>
