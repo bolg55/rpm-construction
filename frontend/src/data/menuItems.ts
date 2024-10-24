@@ -14,6 +14,16 @@ const menuItems = [
     path: '/testimonials',
     children: [],
   },
+  {
+    title: 'Testimonials',
+    path: '/testimonials',
+    children: [
+      {
+        title: 'TestimonialsChild',
+        path: '/testimonials-child',
+      },
+    ],
+  },
 ];
 
 export default menuItems;

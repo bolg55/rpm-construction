@@ -15,6 +15,12 @@ interface Props {
   robots?: boolean;
 }
 
+const res = await fetch(
+  'http://localhost:1337/api/global?populate[0]=navbar.logo.image&populate[1]=navbar.navItems.children&populate[2]=navbar.ctaLink&populate[3]=footer.section.links.children&populate[4]=footer.socialMedia'
+);
+const { data } = await res.json();
+const { navItems, logo, ctaLink } = data?.navbar;
+
 const { title, description, image, frontmatter, robots } = Astro.props;
 ---
 
@@ -23,7 +29,8 @@ const { title, description, image, frontmatter, robots } = Astro.props;
   <Head {title} {description} {image} {frontmatter} {robots} />
   <body class='bg-background'>
     <TwSizeIndicator />
-    <Navbar />
+    <Navbar {navItems} {ctaLink} {logo} />
+    <pre>{JSON.stringify(data,null,2)}</pre>
     <main>
       <slot />
     </main>

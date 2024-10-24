@@ -1,6 +1,6 @@
 ---
 const { class: className } = Astro.props;
-import AnimatedButton from './ui/animated-button.astro';
+import Link from './ui/link.astro';
 ---
 
 <div class:list={['relative', className]}>
@@ -24,7 +24,7 @@ import AnimatedButton from './ui/animated-button.astro';
         Have a project in mind? Let's talk about it. We are here to help you
         with your construction needs.
       </p>
-      <AnimatedButton href='/contact'>Contact us</AnimatedButton>
+      <Link style='animated' href='/contact'>Contact us</Link>
     </div>
   </div>
 </div>

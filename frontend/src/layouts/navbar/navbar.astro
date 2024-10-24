@@ -6,6 +6,8 @@ import { Astronav, MenuIcon, MenuItems, StickyHeader } from 'astro-navbar';
 import Dropdown from './dropdown.astro';
 
 const pathname = Astro.url.pathname;
+const { navItems, ctaLink, logo } = Astro.props;
+const { href, label, size, block, style } = ctaLink;
 ---
 
 <StickyHeader
@@ -16,63 +18,73 @@ const pathname = Astro.url.pathname;
 >
   <Astronav>
     <div class='flex w-full lg:w-auto items-center justify-between'>
-      <Logo />
+      <Logo {logo} />
       <div class='block lg:hidden'>
         <MenuIcon class='w-6 h-6 text-gray-700' />
       </div>
     </div>
-    <MenuItems class='hidden w-full lg:w-auto mt-2 lg:flex lg:gap-12'>
-      <ul class='flex flex-col lg:items-center uppercase lg:flex-row lg:gap-12'>
-        {
-          menuItems.map((item, index) => (
-            <>
-              {item?.children.length > 0 && (
-                <Dropdown
-                  title={item.title}
-                  children={item.children}
-                  lastItem={index === menuItems.length - 1}
-                />
-              )}
 
-              {!item.children.length && (
-                <li class='relative group'>
-                  <a
-                    href={item.path}
-                    class:list={[
-                      'flex hover:text-accent p-2 lg:p-0 font-semibold tracking-widest transition-all ease-linear',
-                      pathname === item.path
-                        ? 'underline decoration-accent decoration-2 underline-offset-4'
-                        : '',
-                    ]}
-                  >
-                    {item.title}
-                  </a>
-                </li>
-              )}
-            </>
-          ))
+    <MenuItems class='hidden w-full lg:w-auto mt-2 lg:flex lg:gap-12'>
+      <ul class='flex flex-col lg:items-center lg:flex-row lg:gap-12'>
+        {
+          navItems.map(
+            (
+              item: {
+                children: { title: string; path: string }[];
+                title: string;
+                path: string;
+              },
+              index: number
+            ) => (
+              <>
+                {item?.children.length > 0 && (
+                  <Dropdown
+                    title={item.title}
+                    children={item.children}
+                    lastItem={index === menuItems.length - 1}
+                  />
+                )}
+
+                {!item.children.length && (
+                  <li class='relative group'>
+                    <a
+                      href={item.path}
+                      class:list={[
+                        'flex hover:text-accent uppercase p-2 lg:p-0 font-semibold tracking-widest transition-all ease-linear',
+                        pathname === item.path
+                          ? 'underline decoration-accent decoration-2 underline-offset-4'
+                          : '',
+                      ]}
+                    >
+                      {item.title}
+                    </a>
+                  </li>
+                )}
+              </>
+            )
+          )
         }
       </ul>
       <div class='lg:hidden flex items-center mt-3 gap-4 flex-col w-full'>
         <Link
-          href='/contact'
-          size='md'
-          style='secondary'
+          href={href}
+          size={size}
+          style={style}
           class='flex gap-1 items-center justify-center'
-          block
+          {block}
         >
-          Contact Us
+          {label}
         </Link>
       </div>
 
       <div class='hidden lg:flex items-center'>
         <Link
-          href='/contact'
-          style='secondary'
-          size='lg'
+          href={href}
+          size={size}
+          style={style}
           class='flex gap-1 items-center justify-center'
         >
-          Contact Us
+          {label}
         </Link>
       </div>
     </MenuItems>

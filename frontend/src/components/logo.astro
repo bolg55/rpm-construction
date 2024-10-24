@@ -1,11 +1,13 @@
 ---
 import { Image } from 'astro:assets';
+const { logo } = Astro.props;
+const { url, alternativeText: alt } = logo.image;
 ---
 
-<a href='/'>
+<a href={logo.href}>
   <Image
-    src='/rpm.png'
-    alt='RPM'
+    src={`http://localhost:1337${url}`}
+    alt={alt}
     width={100}
     height={150}
     quality={100}
