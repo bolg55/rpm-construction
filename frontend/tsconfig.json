@@ -11,7 +11,8 @@
       "@/pages/*": ["./src/pages/*"],
       "@/utils/*": ["./src/utils/*"],
       "@/data/*": ["./src/data/*"],
-      "@/interfaces/*": ["./src/interfaces/*"]
+      "@/interfaces/*": ["./src/interfaces/*"],
+      "@/queries/*": ["./src/queries/*"]
     }
   }
 }

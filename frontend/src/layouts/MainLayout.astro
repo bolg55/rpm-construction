@@ -1,5 +1,6 @@
 ---
 import type { Post } from '@/interfaces/blog-interface';
+import { fetchStrapiData } from '@/queries/strapiQueries';
 import TwSizeIndicator from '@/utils/TwSizeIndicator.astro';
 import '@fontsource-variable/inter';
 import '@fontsource-variable/montserrat';
@@ -15,9 +16,7 @@ interface Props {
   robots?: boolean;
 }
 
-const res = await fetch('http://localhost:1337/api/global');
-
-const { data } = await res.json();
+const data = await fetchStrapiData('/global');
 const { logo, socialMedia, companyName } = data?.company;
 const { navItems, ctaLink } = data?.navbar;
 const { footer } = data;
