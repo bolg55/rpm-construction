@@ -23,50 +23,49 @@ const { footer, socialMedia, companyName } = Astro.props;
 >
   <Container>
     <h2 id='footer-heading' class='sr-only'>Footer</h2>
-    <div class='lg:pt-16'>
-      <div class='xl:grid xl:grid-cols-1 xl:gap-8'>
-        <div
-          class='mt-16 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8 xl:col-span-2 xl:mt-0'
-        >
-          {
-            footer.section.map((section: FooterSection) => (
-              <div>
-                <h3 class='font-heading text-xl text-footer-text mb-2'>
-                  {section.title}
-                </h3>
-                <ul role='list' class='mb-6'>
-                  {section.links.map((link) => (
-                    <li class='pt-2'>
-                      {/* Render only the children if they exist */}
-                      {(link.children ?? []).length > 0 ? (
-                        <ul>
-                          {(link.children ?? []).map((childLink) => (
-                            <li class='pt-2'>
-                              <a
-                                href={childLink.path}
-                                class='lg:text-base transition-all text-footer-text hover:text-accent'
-                              >
-                                {childLink.title}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      ) : (
-                        // Otherwise, render the parent link
-                        <a
-                          href={link.path}
-                          class='lg:text-base transition-all text-footer-text hover:text-accent'
-                        >
-                          {link.title}
-                        </a>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))
-          }
-        </div>
+
+    <div class='xl:grid xl:grid-cols-1 xl:gap-8'>
+      <div
+        class='mt-16 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8 xl:col-span-2 xl:mt-0'
+      >
+        {
+          footer.section.map((section: FooterSection) => (
+            <div>
+              <h3 class='font-heading text-xl text-footer-text mb-2'>
+                {section.title}
+              </h3>
+              <ul role='list' class='mb-6'>
+                {section.links.map((link) => (
+                  <li class='pt-2'>
+                    {/* Render only the children if they exist */}
+                    {(link.children ?? []).length > 0 ? (
+                      <ul>
+                        {(link.children ?? []).map((childLink) => (
+                          <li class='pt-2'>
+                            <a
+                              href={childLink.path}
+                              class='lg:text-base transition-all text-footer-text hover:text-accent'
+                            >
+                              {childLink.title}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      // Otherwise, render the parent link
+                      <a
+                        href={link.path}
+                        class='lg:text-base transition-all text-footer-text hover:text-accent'
+                      >
+                        {link.title}
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
       </div>
     </div>
   </Container>

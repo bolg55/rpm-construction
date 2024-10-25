@@ -30,6 +30,15 @@ export default {
       // 'zh-Hans',
       // 'zh',
     ],
+    theme: {
+      light: {
+        colors: {
+          primary600: '#E51625',
+          buttonPrimary500: '#E51625',
+          buttonPrimary600: '#E51625',
+        },
+      },
+    },
   },
   bootstrap(app: StrapiApp) {
     console.log(app);

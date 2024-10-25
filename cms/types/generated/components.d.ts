@@ -72,6 +72,31 @@ export interface BrandSocial extends Struct.ComponentSchema {
   };
 }
 
+export interface LayoutAbout extends Struct.ComponentSchema {
+  collectionName: 'components_layout_abouts';
+  info: {
+    displayName: 'About';
+  };
+  attributes: {
+    about: Schema.Attribute.Text & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'>;
+  };
+}
+
+export interface LayoutCta extends Struct.ComponentSchema {
+  collectionName: 'components_layout_ctas';
+  info: {
+    displayName: 'CTA';
+  };
+  attributes: {
+    heading: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Contact'>;
+    link: Schema.Attribute.Component<'ui.link', false>;
+    subHeading: Schema.Attribute.Text;
+  };
+}
+
 export interface UiButton extends Struct.ComponentSchema {
   collectionName: 'components_ui_buttons';
   info: {
@@ -183,6 +208,8 @@ declare module '@strapi/strapi' {
       'brand.global-seo': BrandGlobalSeo;
       'brand.logo': BrandLogo;
       'brand.social': BrandSocial;
+      'layout.about': LayoutAbout;
+      'layout.cta': LayoutCta;
       'ui.button': UiButton;
       'ui.cta': UiCta;
       'ui.footer': UiFooter;

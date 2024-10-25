@@ -1,6 +1,7 @@
 ---
-const { class: className } = Astro.props;
 import Link from './ui/link.astro';
+const { class: className, heading, subHeading, link } = Astro.props;
+const { href, isExternal, size, block, style, label } = link;
 ---
 
 <div class:list={['relative', className]}>
@@ -16,15 +17,14 @@ import Link from './ui/link.astro';
       false
       text-white'
       >
-        CONTACT
+        {heading}
       </h2>
       <p
         class='text-white font-bold md:text-lg lg:text-2xl lg:leading-9 opacity-100'
       >
-        Have a project in mind? Let's talk about it. We are here to help you
-        with your construction needs.
+        {subHeading}
       </p>
-      <Link style='animated' href='/contact'>Contact us</Link>
+      <Link {style} {isExternal} {block} {size} {href}>{label}</Link>
     </div>
   </div>
 </div>
