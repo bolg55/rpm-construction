@@ -42,9 +42,15 @@ export default (config, { strapi }) => {
           },
         },
       },
+      seo: {
+        populate: {
+          fields: ['jsonData', 'title', 'description'],
+          image: {
+            fields: ['url', 'alternativeText'],
+          },
+        },
+      },
     };
     await next();
   };
 };
-
-// http://localhost:1337/api/global?populate[0]=navbar.logo.image&populate[1]=navbar.navItems.children&populate[2]=navbar.ctaLink&populate[3]=footer.section.links.children&populate[4]=footer.socialMedia'

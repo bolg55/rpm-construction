@@ -1,0 +1,91 @@
+---
+import Button from '@/components/ui/button.astro';
+import Container from '@/layouts/Container.astro';
+import PageLayout from '@/layouts/PageLayout.astro';
+---
+
+<PageLayout
+  title='Contact Us'
+  description='RPM Construction is a full-service construction company that specializes in residential and commercial construction services. Contact us today for a free quote.'
+  pageTitle='Contact Form'
+  subtitle='Get in touch'
+>
+  <Container>
+    <div class='max-w-screen-md sm:mb-8 md:mb-32 mx-auto'>
+      <p class='text-primary sm:text-center'>
+        Request a <span class='text-accent font-semibold'>free quote</span> or submit
+        general questions via the form below.
+      </p>
+
+      <form class='mt-7 md:mt-10' id='form' method='POST'>
+        <input
+          type='hidden'
+          name='access_key'
+          value={import.meta.env.WEB3_KEY}
+        />
+        <!-- Honey pot field -->
+        <input
+          type='checkbox'
+          class='hidden'
+          name='botcheck'
+          style='display: none'
+        />
+        <!-- Set the subject -->
+        <input type='hidden' name='subject' value='Contact Form Submission' />
+        <div class='flex flex-col gap-3 sm:gap-4'>
+          <label for='name'
+            ><input
+              type='text'
+              maxlength='30'
+              required=''
+              name='name'
+              placeholder='Name'
+              class='px-1 sm:px-2 lg:px-3 w-full rounded border-border border border-opacity-25 sm:py-3 bg-slate-50'
+              value=''
+            /></label
+          ><label for='email'
+            ><input
+              type='email'
+              maxlength='90'
+              required=''
+              name='email'
+              placeholder='Email address'
+              class='px-1 sm:px-2 lg:px-3 w-full rounded border-border border border-opacity-25 sm:py-3 bg-slate-50'
+              value=''
+            /></label
+          ><label for='message'
+            ><textarea
+              name='message'
+              id='message'
+              rows='8'
+              placeholder='Your message'
+              required=''
+              class='px-1 sm:px-2 lg:px-3 w-full rounded border-border border border-opacity-25 sm:py-3 bg-slate-50'
+            ></textarea></label
+          >
+        </div>
+
+        <div
+          class='flex gap-4 flex-col-reverse sm:flex-row sm:gap-0 sm:justify-between items-center my-4 md:my-10'
+        >
+          <div id='result' class='invisible'></div>
+          <Button
+            id='submitButton'
+            type='submit'
+            style='primary'
+            class='sm:w-48'
+          >
+            Send Message
+          </Button>
+        </div>
+      </form>
+    </div>
+  </Container>
+</PageLayout>
+
+<script>
+  import { handleFormSubmission } from '@/utils/formHandler.ts';
+  document.addEventListener('astro:page-load', () =>
+    handleFormSubmission('form', 'result', 'submitButton')
+  );
+</script>

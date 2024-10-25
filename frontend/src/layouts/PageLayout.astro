@@ -1,9 +1,8 @@
 ---
+import Sectionhead from '@/components/sectionhead.astro';
+import BackgroundStyle from '@/components/ui/background-style.astro';
 import type { Post } from '@/interfaces/blog-interface';
 import MainLayout from './MainLayout.astro';
-import Cta from '@/components/cta.astro';
-import BackgroundStyle from '@/components/ui/background-style.astro';
-import Sectionhead from '@/components/sectionhead.astro';
 import Container from './Container.astro';
 
 interface Props {
@@ -25,10 +24,7 @@ const {
   robots,
   subtitle = 'Subtitle',
   pageTitle = 'Page Title',
-  whiteBG,
 } = Astro.props;
-
-const pathname = Astro.url.pathname;
 ---
 
 <MainLayout {title} {description} {image} {frontmatter} {robots}>
@@ -38,8 +34,7 @@ const pathname = Astro.url.pathname;
         <Fragment slot='subtitle'>{subtitle}</Fragment>
         <Fragment slot='title'>{pageTitle}</Fragment>
       </Sectionhead>
-      <slot />
     </Container>
+    <slot />
   </BackgroundStyle>
-  {pathname !== '/contact' && <Cta class={whiteBG && 'bg-white'} />}
 </MainLayout>

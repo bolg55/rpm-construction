@@ -63,18 +63,18 @@ The current template should work, but you can add more data if needed. Use the [
 ## Suggested Environment Variables
 
 ```env
-PUBLIC_SITE_NAME="My Site"
+SITE_NAME="My Site"
 
-PUBLIC_FACEBOOK_URL=https://www.facebook.com/_username_
-PUBLIC_TWITTER_URL=https://twitter.com/_username_
-PUBLIC_INSTAGRAM_URL=https://www.instagram.com/_username_
-PUBLIC_LINKEDIN_URL=https://www.linkedin.com/in/_username_
-PUBLIC_GITHUB_URL=https://www.github.com/_username_
-PUBLIC_YOUTUBE_URL=https://www.youtube.com/channel/_username_
+FACEBOOK_URL=https://www.facebook.com/_username_
+TWITTER_URL=https://twitter.com/_username_
+INSTAGRAM_URL=https://www.instagram.com/_username_
+LINKEDIN_URL=https://www.linkedin.com/in/_username_
+GITHUB_URL=https://www.github.com/_username_
+YOUTUBE_URL=https://www.youtube.com/channel/_username_
 
 
-PUBLIC_TWITTER_HANDLE=@_username_
-PUBLIC_PHONE_NUMBER=+1234567890
+TWITTER_HANDLE=@_username_
+PHONE_NUMBER=+1234567890
 
 WEB3_KEY=your_web3_key
 ```

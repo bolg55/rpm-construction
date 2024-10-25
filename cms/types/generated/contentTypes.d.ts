@@ -412,19 +412,24 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    company: Schema.Attribute.Component<'brand.company-info', false>;
+    company: Schema.Attribute.Component<'brand.company-info', false> &
+      Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    footer: Schema.Attribute.Component<'ui.footer', false>;
+    footer: Schema.Attribute.Component<'ui.footer', false> &
+      Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::global.global'
     > &
       Schema.Attribute.Private;
-    navbar: Schema.Attribute.Component<'ui.nav-bar', false>;
+    navbar: Schema.Attribute.Component<'ui.nav-bar', false> &
+      Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'brand.global-seo', false> &
+      Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -467,12 +472,13 @@ export interface ApiNavItemNavItem extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiSeoSeo extends Struct.SingleTypeSchema {
-  collectionName: 'seos';
+export interface ApiPagePage extends Struct.CollectionTypeSchema {
+  collectionName: 'pages';
   info: {
-    displayName: 'SEO';
-    pluralName: 'seos';
-    singularName: 'seo';
+    description: '';
+    displayName: 'Page';
+    pluralName: 'pages';
+    singularName: 'page';
   };
   options: {
     draftAndPublish: true;
@@ -481,19 +487,37 @@ export interface ApiSeoSeo extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    jsonData: Schema.Attribute.JSON;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::seo.seo'> &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    seoDescription: Schema.Attribute.Text &
+    description: Schema.Attribute.Text &
       Schema.Attribute.Required &
+      Schema.Attribute.Unique &
       Schema.Attribute.SetMinMaxLength<{
-        maxLength: 197;
+        maxLength: 160;
         minLength: 3;
       }>;
-    seoImage: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
-    seoTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    dynamicPageSection: Schema.Attribute.DynamicZone<
+      ['layout.about', 'layout.cta', 'layout.contact']
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::page.page'> &
+      Schema.Attribute.Private;
+    pageTitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 3;
+      }> &
+      Schema.Attribute.DefaultTo<'Title'>;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
+    subtitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 3;
+      }> &
+      Schema.Attribute.DefaultTo<'subtitle'>;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1008,7 +1032,7 @@ declare module '@strapi/strapi' {
       'api::child-link.child-link': ApiChildLinkChildLink;
       'api::global.global': ApiGlobalGlobal;
       'api::nav-item.nav-item': ApiNavItemNavItem;
-      'api::seo.seo': ApiSeoSeo;
+      'api::page.page': ApiPagePage;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

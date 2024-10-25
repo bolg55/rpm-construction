@@ -1,0 +1,73 @@
+---
+import Button from '@/components/ui/button.astro';
+import Container from '@/layouts/Container.astro';
+
+const { subHeading, subject, button } = Astro.props;
+const { label, type, style, block, size } = button;
+---
+
+<div class='max-w-screen-md sm:mb-8 md:mb-32 mx-auto lg:px-8 px-4'>
+  <p class='text-primary sm:text-center'>
+    <Fragment set:html={subHeading} />
+  </p>
+  <form class='mt-7 md:mt-10' id='form' method='POST'>
+    <input type='hidden' name='access_key' value={import.meta.env.WEB3_KEY} />
+    <!-- Honey pot field -->
+    <input
+      type='checkbox'
+      class='hidden'
+      name='botcheck'
+      style='display: none'
+    />
+    <!-- Set the subject -->
+    <input type='hidden' name='subject' value={subject} />
+    <div class='flex flex-col gap-3 sm:gap-4'>
+      <label for='name'
+        ><input
+          type='text'
+          maxlength='30'
+          required=''
+          name='name'
+          placeholder='Name'
+          class='px-1 sm:px-2 lg:px-3 w-full rounded border-border border border-opacity-25 sm:py-3 bg-slate-50'
+          value=''
+        /></label
+      ><label for='email'
+        ><input
+          type='email'
+          maxlength='90'
+          required=''
+          name='email'
+          placeholder='Email address'
+          class='px-1 sm:px-2 lg:px-3 w-full rounded border-border border border-opacity-25 sm:py-3 bg-slate-50'
+          value=''
+        /></label
+      ><label for='message'
+        ><textarea
+          name='message'
+          id='message'
+          rows='8'
+          placeholder='Your message'
+          required=''
+          class='px-1 sm:px-2 lg:px-3 w-full rounded border-border border border-opacity-25 sm:py-3 bg-slate-50'
+        ></textarea></label
+      >
+    </div>
+
+    <div
+      class='flex gap-4 flex-col-reverse sm:flex-row sm:gap-0 sm:justify-between items-center my-4 md:my-10'
+    >
+      <div id='result' class='invisible'></div>
+      <Button id='submitButton' {type} {style} {block} {size} class='sm:w-48'>
+        {label}
+      </Button>
+    </div>
+  </form>
+</div>
+
+<script>
+  import { handleFormSubmission } from '@/utils/formHandler.ts';
+  document.addEventListener('astro:page-load', () =>
+    handleFormSubmission('form', 'result', 'submitButton')
+  );
+</script>

@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_layout_ctas",
+  "info": {
+    "displayName": "CTA"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "Contact",
+      "required": true
+    },
+    "subHeading": {
+      "type": "text",
+      "required": false
+    },
+    "link": {
+      "type": "component",
+      "repeatable": false,
+      "component": "ui.link",
+      "required": false
+    }
+  }
+}

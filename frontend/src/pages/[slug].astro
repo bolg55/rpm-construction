@@ -1,0 +1,64 @@
+---
+// Get the page data from Strapi and pass it into the component
+import PageLayout from '@/layouts/PageLayout.astro';
+import { fetchStrapiData } from '@/queries/strapiQueries';
+import About from '@/components/About.astro';
+import Cta from '@/components/cta.astro';
+import Contact from '@/components/Contact.astro';
+
+// Generate dynamic paths from Strapi slugs
+export const getStaticPaths = async () => {
+  const pages = await fetchStrapiData('/pages');
+
+  return pages.map((page: { slug: string }) => ({
+    params: { slug: page.slug },
+    props: { page },
+  }));
+};
+
+interface Props {
+  page: {
+    dynamicPageSection: any;
+    title: string;
+    description: string;
+    pageTitle: string;
+    subtitle: string;
+  };
+}
+
+const { page } = Astro.props;
+---
+
+<!-- Render your page content -->
+<PageLayout
+  title={page.title}
+  description={page.description}
+  pageTitle={page.pageTitle}
+  subtitle={page.subtitle}
+  whiteBG={true}
+>
+  {
+    page.dynamicPageSection.map((block: any) => {
+      switch (block.__component) {
+        case 'layout.about':
+          return <About about={block.about} image={block.image} />;
+        case 'layout.cta':
+          return (
+            <Cta
+              heading={block.heading}
+              subHeading={block.subHeading}
+              link={block.link}
+            />
+          );
+        case 'layout.contact':
+          return (
+            <Contact
+              subHeading={block.subHeading}
+              subject={block.subject}
+              button={block.button}
+            />
+          );
+      }
+    })
+  }
+</PageLayout>

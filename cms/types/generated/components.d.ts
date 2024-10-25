@@ -14,7 +14,32 @@ export interface BrandCompanyInfo extends Struct.ComponentSchema {
     logo: Schema.Attribute.Component<'brand.logo', false>;
     phone: Schema.Attribute.String;
     socialMedia: Schema.Attribute.Component<'brand.social', true>;
+    twitterHandle: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'@twitter'>;
     url: Schema.Attribute.String;
+  };
+}
+
+export interface BrandGlobalSeo extends Struct.ComponentSchema {
+  collectionName: 'components_brand_global_seos';
+  info: {
+    displayName: 'GlobalSEO';
+  };
+  attributes: {
+    description: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 160;
+        minLength: 3;
+      }>;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    jsonData: Schema.Attribute.JSON & Schema.Attribute.Required;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 65;
+        minLength: 3;
+      }>;
   };
 }
 
@@ -44,6 +69,46 @@ export interface BrandSocial extends Struct.ComponentSchema {
       Schema.Attribute.DefaultTo<'Facebook'>;
     link: Schema.Attribute.String & Schema.Attribute.Required;
     name: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface LayoutAbout extends Struct.ComponentSchema {
+  collectionName: 'components_layout_abouts';
+  info: {
+    displayName: 'About';
+  };
+  attributes: {
+    about: Schema.Attribute.Text & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'>;
+  };
+}
+
+export interface LayoutContact extends Struct.ComponentSchema {
+  collectionName: 'components_layout_contacts';
+  info: {
+    displayName: 'Contact';
+    icon: 'envelop';
+  };
+  attributes: {
+    button: Schema.Attribute.Component<'ui.button', false>;
+    subHeading: Schema.Attribute.RichText;
+    subject: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'[NEW FORM SUBMISSION]'>;
+  };
+}
+
+export interface LayoutCta extends Struct.ComponentSchema {
+  collectionName: 'components_layout_ctas';
+  info: {
+    displayName: 'CTA';
+  };
+  attributes: {
+    heading: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Contact'>;
+    link: Schema.Attribute.Component<'ui.link', false>;
+    subHeading: Schema.Attribute.Text;
   };
 }
 
@@ -145,7 +210,8 @@ export interface UiNavBar extends Struct.ComponentSchema {
     icon: 'apps';
   };
   attributes: {
-    ctaLink: Schema.Attribute.Component<'ui.link', false>;
+    ctaLink: Schema.Attribute.Component<'ui.link', false> &
+      Schema.Attribute.Required;
     navItems: Schema.Attribute.Relation<'oneToMany', 'api::nav-item.nav-item'>;
   };
 }
@@ -154,8 +220,12 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'brand.company-info': BrandCompanyInfo;
+      'brand.global-seo': BrandGlobalSeo;
       'brand.logo': BrandLogo;
       'brand.social': BrandSocial;
+      'layout.about': LayoutAbout;
+      'layout.contact': LayoutContact;
+      'layout.cta': LayoutCta;
       'ui.button': UiButton;
       'ui.cta': UiCta;
       'ui.footer': UiFooter;

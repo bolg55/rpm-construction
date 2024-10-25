@@ -1,0 +1,23 @@
+---
+import Container from '@/layouts/Container.astro';
+import { getStrapiMedia } from '@/utils/strapi';
+const { about, image } = Astro.props;
+const { url, alternativeText } = image;
+---
+
+<Container class='py-4 lg:py-8'>
+  <div class='mx-auto sm:py-16 lg:pb-32'>
+    <div
+      class='mx-auto lg:mx-0 lg:grid lg:max-w-none lg:grid-cols-2 lg:gap-x-16 lg:gap-y-6 xl:grid-cols-1 xl:grid-rows-1 xl:gap-x-16'
+    >
+      <div class='mt-6 max-w-xl mx-auto lg:mt-0 xl:col-end-1 xl:row-start-1'>
+        <p class='text-lg leading-8 text-gray-600'>{about}</p>
+      </div>
+      <img
+        src={getStrapiMedia(url)}
+        alt={alternativeText}
+        class='mt-10 mx-auto aspect-[7/5] w-full rounded-2xl object-cover sm:mt-16 lg:mt-0 lg:max-w-none xl:row-span-2 xl:row-end-2xl:mt-36'
+      />
+    </div>
+  </div>
+</Container>
