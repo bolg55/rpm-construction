@@ -21,7 +21,7 @@ const { footer, socialMedia, companyName } = Astro.props;
   class='bg-footer-background text-accent'
   aria-labelledby='footer-heading'
 >
-  <Container>
+  <Container class='py-4 lg:py-8'>
     <h2 id='footer-heading' class='sr-only'>Footer</h2>
 
     <div class='xl:grid xl:grid-cols-1 xl:gap-8'>
@@ -70,7 +70,7 @@ const { footer, socialMedia, companyName } = Astro.props;
     </div>
   </Container>
 
-  <Container class='md:flex md:items-center md:justify-between'>
+  <Container class='md:flex md:items-center md:justify-between py-4 lg:py-8'>
     <FooterIcons socials={socialMedia} />
 
     <p class='mt-4 text-sm text-footer-text md:order-1 md:mt-0'>

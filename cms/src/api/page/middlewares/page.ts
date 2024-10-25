@@ -15,6 +15,11 @@ export default (config, { strapi }) => {
               link: true,
             },
           },
+          'layout.contact': {
+            populate: {
+              button: true,
+            },
+          },
         },
       },
       //   company: {

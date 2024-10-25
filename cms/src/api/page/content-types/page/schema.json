@@ -46,7 +46,8 @@
       "type": "dynamiczone",
       "components": [
         "layout.about",
-        "layout.cta"
+        "layout.cta",
+        "layout.contact"
       ]
     }
   }

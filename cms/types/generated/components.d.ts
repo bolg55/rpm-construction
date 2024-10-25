@@ -83,6 +83,21 @@ export interface LayoutAbout extends Struct.ComponentSchema {
   };
 }
 
+export interface LayoutContact extends Struct.ComponentSchema {
+  collectionName: 'components_layout_contacts';
+  info: {
+    displayName: 'Contact';
+    icon: 'envelop';
+  };
+  attributes: {
+    button: Schema.Attribute.Component<'ui.button', false>;
+    subHeading: Schema.Attribute.RichText;
+    subject: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'[NEW FORM SUBMISSION]'>;
+  };
+}
+
 export interface LayoutCta extends Struct.ComponentSchema {
   collectionName: 'components_layout_ctas';
   info: {
@@ -209,6 +224,7 @@ declare module '@strapi/strapi' {
       'brand.logo': BrandLogo;
       'brand.social': BrandSocial;
       'layout.about': LayoutAbout;
+      'layout.contact': LayoutContact;
       'layout.cta': LayoutCta;
       'ui.button': UiButton;
       'ui.cta': UiCta;
