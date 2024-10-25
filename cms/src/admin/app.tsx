@@ -1,15 +1,17 @@
-import type { StrapiApp } from '@strapi/strapi/admin';
+// @ts-ignore
 import favicon from './extensions/favicon.ico';
+import type { StrapiApp } from '@strapi/strapi/admin';
 
 export default {
   config: {
     head: {
       favicon: favicon,
     },
+
     locales: ['en', 'fr'],
     translations: {
       en: {
-        'Auth.form.welcome.title': 'RPM Construction',
+        'Auth.form.welcome.title': 'RPM Construction Ltd.',
         'Auth.form.welcome.subtitle': 'Log in to your account',
         'app.components.HomePage.welcomeBlock.content.again':
           'If you run into issues, please contact us at info@kellenbolger.ca',
