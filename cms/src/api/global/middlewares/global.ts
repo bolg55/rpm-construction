@@ -10,6 +10,7 @@ export default (config, { strapi }) => {
               },
             },
           },
+          address: true,
           socialMedia: true,
         },
       },

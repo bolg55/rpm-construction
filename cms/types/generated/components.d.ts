@@ -1,5 +1,25 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface BrandAddress extends Struct.ComponentSchema {
+  collectionName: 'components_brand_addresses';
+  info: {
+    displayName: 'address';
+  };
+  attributes: {
+    address2: Schema.Attribute.String;
+    city: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Elmira'>;
+    country: Schema.Attribute.String;
+    email: Schema.Attribute.Email;
+    mapLink: Schema.Attribute.String;
+    phone: Schema.Attribute.String;
+    postal: Schema.Attribute.String & Schema.Attribute.Required;
+    province: Schema.Attribute.String & Schema.Attribute.Required;
+    streetAddress: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface BrandCompanyInfo extends Struct.ComponentSchema {
   collectionName: 'components_brand_company_infos';
   info: {
@@ -8,11 +28,10 @@ export interface BrandCompanyInfo extends Struct.ComponentSchema {
     icon: 'command';
   };
   attributes: {
+    address: Schema.Attribute.Component<'brand.address', false>;
     companyName: Schema.Attribute.String & Schema.Attribute.Required;
-    email: Schema.Attribute.Email;
     foundingDate: Schema.Attribute.String;
     logo: Schema.Attribute.Component<'brand.logo', false>;
-    phone: Schema.Attribute.String;
     socialMedia: Schema.Attribute.Component<'brand.social', true>;
     twitterHandle: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'@twitter'>;
@@ -255,6 +274,7 @@ export interface UiNavBar extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'brand.address': BrandAddress;
       'brand.company-info': BrandCompanyInfo;
       'brand.global-seo': BrandGlobalSeo;
       'brand.logo': BrandLogo;

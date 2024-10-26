@@ -24,18 +24,18 @@
     "foundingDate": {
       "type": "string"
     },
-    "phone": {
-      "type": "string"
-    },
-    "email": {
-      "type": "email"
-    },
     "url": {
       "type": "string"
     },
     "twitterHandle": {
       "type": "string",
       "default": "@twitter"
+    },
+    "address": {
+      "displayName": "address",
+      "type": "component",
+      "repeatable": false,
+      "component": "brand.address"
     }
   }
 }
