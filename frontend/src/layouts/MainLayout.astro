@@ -17,7 +17,7 @@ interface Props {
 }
 
 const data = await fetchStrapiData('/global');
-const page = await fetchStrapiData(`/pages?filters[slug][$eq]=contact-us`);
+const page = await fetchStrapiData(`/pages?filters[slug][$eq]=testimonials`);
 const { logo, socialMedia, companyName, phone } = data?.company;
 const { navItems, ctaLink } = data?.navbar;
 const { footer } = data;
