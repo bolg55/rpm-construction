@@ -20,6 +20,11 @@ export default (config, { strapi }) => {
               button: true,
             },
           },
+          'layout.testimonial': {
+            populate: {
+              testimonial: true,
+            },
+          },
         },
       },
       //   company: {

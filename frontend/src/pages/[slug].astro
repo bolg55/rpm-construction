@@ -5,6 +5,7 @@ import { fetchStrapiData } from '@/queries/strapiQueries';
 import About from '@/components/About.astro';
 import Cta from '@/components/cta.astro';
 import Contact from '@/components/Contact.astro';
+import Testimonials from '@/components/testimonials.astro';
 
 // Generate dynamic paths from Strapi slugs
 export const getStaticPaths = async () => {
@@ -56,6 +57,13 @@ const { page } = Astro.props;
               subHeading={block.subHeading}
               subject={block.subject}
               button={block.button}
+            />
+          );
+        case 'layout.testimonial':
+          return (
+            <Testimonials
+              testimonials={block.testimonial}
+              numberOfColumns={block.numberOfColumns}
             />
           );
       }

@@ -47,7 +47,8 @@
       "components": [
         "layout.about",
         "layout.cta",
-        "layout.contact"
+        "layout.contact",
+        "layout.testimonial"
       ]
     }
   }

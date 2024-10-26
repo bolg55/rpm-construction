@@ -72,6 +72,20 @@ export interface BrandSocial extends Struct.ComponentSchema {
   };
 }
 
+export interface DataTestimonial extends Struct.ComponentSchema {
+  collectionName: 'components_data_testimonials';
+  info: {
+    displayName: 'testimonial';
+  };
+  attributes: {
+    isFeatured: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    review: Schema.Attribute.Text;
+  };
+}
+
 export interface LayoutAbout extends Struct.ComponentSchema {
   collectionName: 'components_layout_abouts';
   info: {
@@ -101,6 +115,7 @@ export interface LayoutContact extends Struct.ComponentSchema {
 export interface LayoutCta extends Struct.ComponentSchema {
   collectionName: 'components_layout_ctas';
   info: {
+    description: '';
     displayName: 'CTA';
   };
   attributes: {
@@ -108,7 +123,28 @@ export interface LayoutCta extends Struct.ComponentSchema {
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'Contact'>;
     link: Schema.Attribute.Component<'ui.link', false>;
-    subHeading: Schema.Attribute.Text;
+    subHeading: Schema.Attribute.Text &
+      Schema.Attribute.DefaultTo<"Have a project in mind? Let's talk about it. We are here to help you with your construction needs. ">;
+  };
+}
+
+export interface LayoutTestimonial extends Struct.ComponentSchema {
+  collectionName: 'components_layout_testimonials';
+  info: {
+    description: '';
+    displayName: 'Testimonial';
+  };
+  attributes: {
+    numberOfColumns: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 4;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<4>;
+    testimonial: Schema.Attribute.Component<'data.testimonial', true>;
   };
 }
 
@@ -223,9 +259,11 @@ declare module '@strapi/strapi' {
       'brand.global-seo': BrandGlobalSeo;
       'brand.logo': BrandLogo;
       'brand.social': BrandSocial;
+      'data.testimonial': DataTestimonial;
       'layout.about': LayoutAbout;
       'layout.contact': LayoutContact;
       'layout.cta': LayoutCta;
+      'layout.testimonial': LayoutTestimonial;
       'ui.button': UiButton;
       'ui.cta': UiCta;
       'ui.footer': UiFooter;
