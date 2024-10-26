@@ -1,5 +1,6 @@
 ---
 import { getStrapiMedia } from '@/utils/strapi';
+import { Image } from 'astro:assets';
 const { about, image } = Astro.props;
 const { url, alternativeText } = image;
 ---
@@ -11,9 +12,11 @@ const { url, alternativeText } = image;
     <div class='mt-6 max-w-xl mx-auto lg:mt-0 xl:col-end-1 xl:row-start-1'>
       <p class='text-lg leading-8 text-gray-600'>{about}</p>
     </div>
-    <img
-      src={getStrapiMedia(url)}
+    <Image
+      src={getStrapiMedia(url) ?? ''}
       alt={alternativeText}
+      width={1216}
+      height={721}
       class='mt-10 mx-auto aspect-[7/5] w-full rounded-2xl object-cover sm:mt-16 lg:mt-0 lg:max-w-none xl:row-span-2 xl:row-end-2xl:mt-36'
     />
   </div>

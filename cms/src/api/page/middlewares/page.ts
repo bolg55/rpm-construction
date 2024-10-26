@@ -32,6 +32,18 @@ export default (config, { strapi }) => {
               },
             },
           },
+          'layout.service': {
+            populate: {
+              services: {
+                fields: ['title', 'slug', 'summary', 'description'],
+                populate: {
+                  image: {
+                    fields: ['url', 'alternativeText'],
+                  },
+                },
+              },
+            },
+          },
           'ui.link': true,
         },
       },

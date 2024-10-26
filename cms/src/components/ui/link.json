@@ -10,7 +10,7 @@
     "href": {
       "type": "string",
       "required": true,
-      "default": "/"
+      "default": "/contact-us"
     },
     "isExternal": {
       "type": "boolean",

@@ -37,29 +37,29 @@ const { href, label, size, block, style } = ctaLink;
               index: number
             ) => (
               <>
-                {item?.children.length > 0 && (
+                {/* {item?.children.length > 0 && (
                   <Dropdown
                     title={item.title}
                     children={item.children}
                     lastItem={index === menuItems.length - 1}
                   />
-                )}
+                )} */}
 
-                {!item.children.length && (
-                  <li class='relative group'>
-                    <a
-                      href={item.path}
-                      class:list={[
-                        'flex hover:text-accent uppercase p-2 lg:p-0 font-semibold tracking-widest transition-all ease-linear',
-                        pathname === item.path
-                          ? 'underline decoration-accent decoration-2 underline-offset-4'
-                          : '',
-                      ]}
-                    >
-                      {item.title}
-                    </a>
-                  </li>
-                )}
+                {/* {!item.children.length && ( */}
+                <li class='relative group'>
+                  <a
+                    href={item.path}
+                    class:list={[
+                      'flex hover:text-accent uppercase p-2 lg:p-0 font-semibold tracking-widest transition-all ease-linear',
+                      pathname === item.path
+                        ? 'underline decoration-accent decoration-2 underline-offset-4'
+                        : '',
+                    ]}
+                  >
+                    {item.title}
+                  </a>
+                </li>
+                {/* )} */}
               </>
             )
           )

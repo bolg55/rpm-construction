@@ -1,5 +1,5 @@
 {
-  "name": "89innovations",
+  "name": "rpm-construction",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -23,6 +23,7 @@
     "astro": "^4.16.6",
     "astro-icon": "^1.1.1",
     "astro-navbar": "^2.3.3",
+    "astro-remote": "^0.3.3",
     "astro-robots-txt": "^1.0.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.11.10",

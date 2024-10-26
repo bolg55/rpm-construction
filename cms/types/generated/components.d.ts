@@ -147,6 +147,17 @@ export interface LayoutCta extends Struct.ComponentSchema {
   };
 }
 
+export interface LayoutService extends Struct.ComponentSchema {
+  collectionName: 'components_layout_services';
+  info: {
+    description: '';
+    displayName: 'Service';
+  };
+  attributes: {
+    services: Schema.Attribute.Relation<'oneToMany', 'api::service.service'>;
+  };
+}
+
 export interface LayoutShowcase extends Struct.ComponentSchema {
   collectionName: 'components_layout_showcases';
   info: {
@@ -252,7 +263,7 @@ export interface UiLink extends Struct.ComponentSchema {
     block: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     href: Schema.Attribute.String &
       Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'/'>;
+      Schema.Attribute.DefaultTo<'/contact-us'>;
     isExternal: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
@@ -294,6 +305,7 @@ declare module '@strapi/strapi' {
       'layout.about': LayoutAbout;
       'layout.contact': LayoutContact;
       'layout.cta': LayoutCta;
+      'layout.service': LayoutService;
       'layout.showcase': LayoutShowcase;
       'layout.testimonial': LayoutTestimonial;
       'ui.button': UiButton;

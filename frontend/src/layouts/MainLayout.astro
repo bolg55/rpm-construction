@@ -17,7 +17,7 @@ interface Props {
 }
 
 const data = await fetchStrapiData('/global');
-const page = await fetchStrapiData(`/pages?filters[slug][$eq]=showcase`);
+
 const { logo, socialMedia, companyName, address } = data?.company;
 const { navItems, ctaLink } = data?.navbar;
 const { footer } = data;
@@ -32,7 +32,7 @@ const { title, description, image, frontmatter, robots } = Astro.props;
     <TwSizeIndicator />
     <Navbar {navItems} {ctaLink} {logo} />
     <main>
-      <!-- <pre>{JSON.stringify(page,null,2)}</pre> -->
+      <!-- <pre>{JSON.stringify(test,null,2)}</pre> -->
       <slot />
     </main>
     <Footer {footer} {socialMedia} {companyName} {address} />

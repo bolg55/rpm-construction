@@ -9,6 +9,7 @@ import Testimonials from '@/components/react/Testimonials';
 import Showcase from '@/components/react/Showcase';
 import Container from '@/layouts/Container.astro';
 import Link from '@/components/ui/link.astro';
+import Services from '@/components/Services.astro';
 
 // Generate dynamic paths from Strapi slugs
 export const getStaticPaths = async () => {
@@ -85,6 +86,8 @@ const { page } = Astro.props;
           );
         case 'layout.showcase':
           return <Showcase client:load images={block.images} />;
+        case 'layout.service':
+          return <Services services={block.services} />;
 
         // default:
         //   console.warn(`Unknown component type: ${block.__component}`);

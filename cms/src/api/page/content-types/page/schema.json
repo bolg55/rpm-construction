@@ -50,7 +50,8 @@
         "layout.contact",
         "layout.testimonial",
         "layout.showcase",
-        "ui.link"
+        "ui.link",
+        "layout.service"
       ]
     }
   }
