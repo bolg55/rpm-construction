@@ -25,20 +25,16 @@ export default (config, { strapi }) => {
               testimonial: true,
             },
           },
+          'layout.showcase': {
+            populate: {
+              images: {
+                fields: ['url', 'alternativeText'],
+              },
+            },
+          },
+          'ui.link': true,
         },
       },
-      //   company: {
-      //     populate: {
-      //       logo: {
-      //         populate: {
-      //           image: {
-      //             fields: ['url', 'alternativeText'],
-      //           },
-      //         },
-      //       },
-      //       socialMedia: true,
-      //     },
-      //   },
     };
     await next();
   };

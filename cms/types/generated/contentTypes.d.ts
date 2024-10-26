@@ -495,7 +495,14 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         minLength: 3;
       }>;
     dynamicPageSection: Schema.Attribute.DynamicZone<
-      ['layout.about', 'layout.cta', 'layout.contact', 'layout.testimonial']
+      [
+        'layout.about',
+        'layout.cta',
+        'layout.contact',
+        'layout.testimonial',
+        'layout.showcase',
+        'ui.link',
+      ]
     >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::page.page'> &

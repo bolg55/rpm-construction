@@ -147,6 +147,17 @@ export interface LayoutCta extends Struct.ComponentSchema {
   };
 }
 
+export interface LayoutShowcase extends Struct.ComponentSchema {
+  collectionName: 'components_layout_showcases';
+  info: {
+    description: '';
+    displayName: 'Showcase';
+  };
+  attributes: {
+    images: Schema.Attribute.Media<'images', true>;
+  };
+}
+
 export interface LayoutTestimonial extends Struct.ComponentSchema {
   collectionName: 'components_layout_testimonials';
   info: {
@@ -283,6 +294,7 @@ declare module '@strapi/strapi' {
       'layout.about': LayoutAbout;
       'layout.contact': LayoutContact;
       'layout.cta': LayoutCta;
+      'layout.showcase': LayoutShowcase;
       'layout.testimonial': LayoutTestimonial;
       'ui.button': UiButton;
       'ui.cta': UiCta;

@@ -48,7 +48,9 @@
         "layout.about",
         "layout.cta",
         "layout.contact",
-        "layout.testimonial"
+        "layout.testimonial",
+        "layout.showcase",
+        "ui.link"
       ]
     }
   }
