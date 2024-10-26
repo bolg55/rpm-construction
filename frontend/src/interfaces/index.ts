@@ -5,3 +5,10 @@ export interface Logo {
     alternativeText: string;
   };
 }
+
+export interface Testimonial {
+  id: number;
+  review: string;
+  name: string;
+  isFeatured: boolean;
+}
