@@ -14,20 +14,21 @@ interface FooterSection {
   }[];
 }
 
-const { footer, socialMedia, companyName } = Astro.props;
+const { footer, socialMedia, companyName, address } = Astro.props;
 ---
 
 <footer
   class='bg-footer-background text-accent'
   aria-labelledby='footer-heading'
 >
-  <Container class='py-4 lg:py-8'>
+  <Container>
     <h2 id='footer-heading' class='sr-only'>Footer</h2>
 
     <div class='xl:grid xl:grid-cols-1 xl:gap-8'>
       <div
-        class='mt-16 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8 xl:col-span-2 xl:mt-0'
+        class='mt-16 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-4 xl:col-span-2 xl:mt-0'
       >
+        <!-- Existing Link Columns -->
         {
           footer.section.map((section: FooterSection) => (
             <div>
@@ -37,10 +38,9 @@ const { footer, socialMedia, companyName } = Astro.props;
               <ul role='list' class='mb-6'>
                 {section.links.map((link) => (
                   <li class='pt-2'>
-                    {/* Render only the children if they exist */}
-                    {(link.children ?? []).length > 0 ? (
+                    {link.children && link.children.length > 0 ? (
                       <ul>
-                        {(link.children ?? []).map((childLink) => (
+                        {link.children.map((childLink) => (
                           <li class='pt-2'>
                             <a
                               href={childLink.path}
@@ -52,7 +52,6 @@ const { footer, socialMedia, companyName } = Astro.props;
                         ))}
                       </ul>
                     ) : (
-                      // Otherwise, render the parent link
                       <a
                         href={link.path}
                         class='lg:text-base transition-all text-footer-text hover:text-accent'
@@ -66,13 +65,32 @@ const { footer, socialMedia, companyName } = Astro.props;
             </div>
           ))
         }
+
+        <!-- New Column for Social Media and Address -->
+        <div>
+          <h3 class='font-heading text-xl text-footer-text mb-2'>
+            Connect with Us
+          </h3>
+          <!-- Social Media Icons -->
+          <div class='mb-6'>
+            <FooterIcons socials={socialMedia} />
+          </div>
+          <!-- Business Address -->
+          <address class='not-italic text-footer-text'>
+            <p>{address.streetAddress}</p>
+            {address.address2 && <p>{address.streetAddress2}</p>}
+            <p>
+              {address.city}, {address.province}{' '}
+              {address.postal}
+            </p>
+
+            {address.phone && <p>{address.phone}</p>}
+          </address>
+        </div>
       </div>
     </div>
   </Container>
-
-  <Container class='md:flex md:items-center md:justify-between py-4 lg:py-8'>
-    <FooterIcons socials={socialMedia} />
-
+  <Container>
     <p class='mt-4 text-sm text-footer-text md:order-1 md:mt-0'>
       &copy; {new Date().getFullYear()}
       {companyName} All rights reserved.
