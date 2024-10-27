@@ -1,5 +1,6 @@
 ---
-const { align = 'center', id } = Astro.props;
+const { align = 'center', id, level = 'h1' } = Astro.props;
+const Heading = level;
 ---
 
 <div
@@ -15,11 +16,11 @@ const { align = 'center', id } = Astro.props;
   >
     <slot name='subtitle'>Subtitle</slot>
   </p>
-  <h1
+  <Heading
     class='font-heading text-primary uppercase font-bold text-3xl sm:text-5xl lg:text-7xl tracking-tight fade-up opacity-0 translate-y-1/2 transition-all duration-700 ease-in-out'
   >
     <slot name='title'>Title</slot>
-  </h1>
+  </Heading>
 </div>
 
 <script>
