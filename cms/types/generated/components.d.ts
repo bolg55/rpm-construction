@@ -198,7 +198,7 @@ export interface LayoutServiceAreas extends Struct.ComponentSchema {
   attributes: {
     city: Schema.Attribute.Relation<'oneToMany', 'api::city-town.city-town'>;
     link: Schema.Attribute.Component<'ui.link', false>;
-    mapUrl: Schema.Attribute.String;
+    mapUrl: Schema.Attribute.Text;
     subtitle: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'subtitle'>;
