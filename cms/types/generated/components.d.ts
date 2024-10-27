@@ -147,6 +147,24 @@ export interface LayoutCta extends Struct.ComponentSchema {
   };
 }
 
+export interface LayoutHero extends Struct.ComponentSchema {
+  collectionName: 'components_layout_heroes';
+  info: {
+    displayName: 'Hero';
+  };
+  attributes: {
+    cta: Schema.Attribute.Component<'ui.link', true>;
+    heading: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Heading'>;
+    heroImg: Schema.Attribute.Media<'images' | 'files', true> &
+      Schema.Attribute.Required;
+    subheading: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'subheading'>;
+  };
+}
+
 export interface LayoutService extends Struct.ComponentSchema {
   collectionName: 'components_layout_services';
   info: {
@@ -305,6 +323,7 @@ declare module '@strapi/strapi' {
       'layout.about': LayoutAbout;
       'layout.contact': LayoutContact;
       'layout.cta': LayoutCta;
+      'layout.hero': LayoutHero;
       'layout.service': LayoutService;
       'layout.showcase': LayoutShowcase;
       'layout.testimonial': LayoutTestimonial;
