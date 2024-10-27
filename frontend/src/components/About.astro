@@ -29,7 +29,7 @@ const { url, alternativeText } = image;
         </div>
         <Image
           src={getStrapiMedia(url) ?? ''}
-          alt={alternativeText}
+          alt={alternativeText || ''}
           width={1216}
           height={721}
           class='mt-10 mx-auto aspect-[7/5] w-full rounded-2xl object-cover sm:mt-16 lg:mt-20 lg:max-w-none xl:row-span-2 xl:row-end-2 2xl:mt-36'
