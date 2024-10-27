@@ -35,7 +35,12 @@ const {
 
 <BlogLayout {title} {description} frontmatter={post.data} whiteBG={true}>
   <div class='max-w-screen-lg mx-auto'>
-    <Button type='button' onclick='history.back()' style='plain' size='link'>
+    <Button
+      type='button'
+      onclick='javascript:history.back()'
+      style='plain'
+      size='link'
+    >
       &larr; Back to blog
     </Button>
   </div>
