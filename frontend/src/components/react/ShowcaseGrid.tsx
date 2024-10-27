@@ -55,7 +55,7 @@ const ShowcaseGrid = ({ images, openModal }: Props) => {
           const imageIndex = images.findIndex(
             (img) => img.url === visibleImages[idx].url
           );
-          console.log('IDX', imageIndex);
+
           return (
             <div
               className='aspect-h-4 aspect-w-4 overflow-hidden'

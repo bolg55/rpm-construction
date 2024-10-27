@@ -1,5 +1,5 @@
 export const getStrapiURL = () => {
-  return import.meta.env.STRAPI_URL || 'http://localhost:1337';
+  return process.env.STRAPI_URL || 'http://localhost:1337';
 };
 
 export const getStrapiMedia = (url: string | null) => {
