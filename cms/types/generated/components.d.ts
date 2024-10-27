@@ -108,10 +108,11 @@ export interface DataTestimonial extends Struct.ComponentSchema {
 export interface LayoutAbout extends Struct.ComponentSchema {
   collectionName: 'components_layout_abouts';
   info: {
+    description: '';
     displayName: 'About';
   };
   attributes: {
-    about: Schema.Attribute.Text & Schema.Attribute.Required;
+    about: Schema.Attribute.RichText;
     image: Schema.Attribute.Media<'images'>;
   };
 }

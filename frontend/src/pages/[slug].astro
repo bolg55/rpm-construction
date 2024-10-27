@@ -89,9 +89,9 @@ const { page } = Astro.props;
         case 'layout.service':
           return <Services services={block.services} />;
 
-        // default:
-        //   console.warn(`Unknown component type: ${block.__component}`);
-        //   return null;
+        default:
+          console.warn(`Unknown component type: ${block.__component}`);
+          return null;
       }
     })
   }

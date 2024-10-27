@@ -52,12 +52,13 @@ const ShowcaseGrid = ({ images, openModal }: Props) => {
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mb-8 mt-16'>
         {visibleImages.map(({ url, alternativeText: alt, id }, index) => (
           <div
-            className='aspect-h-4 aspect-w-4 overflow-hidden'
+            className='bg-white aspect-w-8 aspect-h-7 rounded-lg shadow cursor-pointer hover:shadow-lg transition-shadow duration-300 motion-safe:opacity-0 motion-safe:animate-fadeInUp'
             key={id}
             onClick={() => openModal(index)}
+            style={{ animationDelay: `${index * 100}ms` }}
           >
             <img
-              className='rounded shadow hover:scale-105 transform transition duration-500 ease-in-out cursor-pointer object-cover object-center'
+              className='object-cover rounded-lg'
               src={getStrapiMedia(url) ?? ''}
               alt={alt || 'RPM Construction'}
             />
