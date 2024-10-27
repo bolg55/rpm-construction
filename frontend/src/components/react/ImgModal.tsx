@@ -77,7 +77,7 @@ const ImgModal = ({
             alt={images[currentIndex].alternativeText || 'Gallery Image'}
           />
         </div>
-
+        {getStrapiMedia(images[currentIndex].url)}
         {/* Navigation buttons */}
         <div className='flex justify-between items-center bg-gray-100'>
           <button
