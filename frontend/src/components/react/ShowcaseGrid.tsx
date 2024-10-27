@@ -50,20 +50,27 @@ const ShowcaseGrid = ({ images, openModal }: Props) => {
   return (
     <div className='max-w-screen-md lg:mb-32 mx-auto p-4 sm:p0'>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mb-8 mt-16'>
-        {visibleImages.map(({ url, alternativeText: alt, id }, index) => (
-          <div
-            className='bg-white aspect-w-8 aspect-h-7 rounded-lg shadow cursor-pointer hover:shadow-lg transition-shadow duration-300 motion-safe:opacity-0 motion-safe:animate-fadeInUp'
-            key={id}
-            onClick={() => openModal(index)}
-            style={{ animationDelay: `${index * 100}ms` }}
-          >
-            <img
-              className='object-cover rounded-lg'
-              src={getStrapiMedia(url) ?? ''}
-              alt={alt || 'RPM Construction'}
-            />
-          </div>
-        ))}
+        {visibleImages.map(({ url, alternativeText: alt }, idx) => {
+          // Calculate the index of the image in the original images array
+          const imageIndex = images.findIndex(
+            (img) => img.url === visibleImages[idx].url
+          );
+
+          return (
+            <div
+              className='aspect-h-4 aspect-w-4 overflow-hidden'
+              key={imageIndex}
+              onClick={() => openModal(imageIndex)}
+              style={{ animationDelay: `${idx * 100}ms` }}
+            >
+              <img
+                className='object-cover rounded-lg'
+                src={getStrapiMedia(url) ?? ''}
+                alt={alt || 'RPM Construction'}
+              />
+            </div>
+          );
+        })}
       </div>
       {hasMore && (
         <div
