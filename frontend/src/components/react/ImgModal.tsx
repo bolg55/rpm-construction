@@ -41,7 +41,7 @@ const ImgModal = ({
 
   return (
     <div
-      className='fixed inset-0 z-50 flex items-center justify-center'
+      className='hidden fixed inset-0 z-50 sm:flex items-center justify-center'
       aria-labelledby='modal-title'
       role='dialog'
       aria-modal='true'
