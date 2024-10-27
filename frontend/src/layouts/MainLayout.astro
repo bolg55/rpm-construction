@@ -21,7 +21,6 @@ const data = await fetchStrapiData('/global');
 const { logo, socialMedia, companyName, address } = data?.company;
 const { navItems, ctaLink } = data?.navbar;
 const { footer } = data;
-
 const { title, description, image, frontmatter, robots } = Astro.props;
 ---
 
