@@ -21,6 +21,13 @@
       "type": "component",
       "repeatable": false,
       "component": "layout.hero"
+    },
+    "description": {
+      "type": "text",
+      "required": true,
+      "default": "description",
+      "maxLength": 160,
+      "minLength": 3
     }
   }
 }

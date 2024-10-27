@@ -1,11 +1,15 @@
 ---
 import Hero from '@/components/hero.astro';
 import MainLayout from '@/layouts/MainLayout.astro';
+import { fetchStrapiData } from '@/queries/strapiQueries';
+const data = await fetchStrapiData('/home-page');
+const { title, description, hero } = data;
 ---
 
 <MainLayout
-  title='RPM Construction LTD. | Elmira, Ontario'
-  description='RPM Construction LTD. is a family-owned and operated business that has been serving Elmira, Ontario and the surrounding areas since 1991.'
+  title={`RPM Construction Ltd. | ${title}`}
+  description={description}
 >
-  <Hero />
+  <!-- <pre>{JSON.stringify(data,null,2)}</pre> -->
+  <Hero hero={hero} />
 </MainLayout>
