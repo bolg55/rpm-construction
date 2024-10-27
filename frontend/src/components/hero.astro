@@ -1,13 +1,6 @@
 ---
 import HeroImages from './react/HeroImages';
 import HeroText from './react/HeroText';
-import Link from './ui/link.astro';
-
-interface Button {
-  href: string;
-  style: 'primary' | 'secondary' | 'plain' | 'animated';
-  label: string;
-}
 
 const { hero } = Astro.props;
 const { heading, subheading, heroImg, cta } = hero;
@@ -50,27 +43,6 @@ const { heading, subheading, heroImg, cta } = hero;
         subheading={subheading}
         cta={cta}
       />
-      <!-- <div class='relative w-full max-w-xl lg:shrink-0 xl:max-w-2xl'>
-        <h1
-          class='text-4xl font-bold tracking-tighter font-heading text-primary sm:text-6xl'
-        >
-          {heading}
-        </h1>
-        <p
-          class='mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none'
-        >
-          {subheading}
-        </p> -->
-      <!-- <div class='mt-10 flex items-center gap-x-4 lg:gap-x-6'>
-        {
-          cta.map((button: Button) => (
-            <Link href={button.href} style={button.style} class='w-full'>
-              {button.label}
-            </Link>
-          ))
-        }
-      </div>
-    </div> -->
       <HeroImages images={heroImg} client:load />
     </div>
   </div>

@@ -26,24 +26,12 @@ const { href, label, size, block, style } = ctaLink;
       <ul class='flex flex-col lg:items-center lg:flex-row lg:gap-12'>
         {
           navItems.map(
-            (
-              item: {
-                children: { title: string; path: string }[];
-                title: string;
-                path: string;
-              },
-              index: number
-            ) => (
+            (item: {
+              children: { title: string; path: string }[];
+              title: string;
+              path: string;
+            }) => (
               <>
-                {/* {item?.children.length > 0 && (
-                  <Dropdown
-                    title={item.title}
-                    children={item.children}
-                    lastItem={index === menuItems.length - 1}
-                  />
-                )} */}
-
-                {/* {!item.children.length && ( */}
                 <li class='relative group'>
                   <a
                     href={item.path}
@@ -57,7 +45,6 @@ const { href, label, size, block, style } = ctaLink;
                     {item.title}
                   </a>
                 </li>
-                {/* )} */}
               </>
             )
           )

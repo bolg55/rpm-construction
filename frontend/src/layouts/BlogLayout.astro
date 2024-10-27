@@ -1,5 +1,4 @@
 ---
-import Cta from '@/components/cta.astro';
 import BackgroundStyle from '@/components/ui/background-style.astro';
 import type { Post } from '@/interfaces/blog-interface';
 import Container from './Container.astro';
@@ -14,9 +13,7 @@ interface Props {
   whiteBG?: boolean;
 }
 
-const { title, description, image, frontmatter, robots, whiteBG } = Astro.props;
-
-const pathname = Astro.url.pathname;
+const { title, description, image, frontmatter, robots } = Astro.props;
 ---
 
 <MainLayout {title} {description} {image} {frontmatter} {robots}>

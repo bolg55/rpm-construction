@@ -1,6 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
 import { getStrapiMedia } from '@/utils/strapi';
+import { motion } from 'framer-motion';
 
 interface Image {
   url: string;

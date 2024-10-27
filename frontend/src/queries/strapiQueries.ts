@@ -2,7 +2,7 @@ import { getStrapiURL } from '@/utils/strapi';
 
 export const fetchStrapiData = async (
   endpoint: string,
-  token: string | null = null
+  _token: string | null = null
 ) => {
   try {
     const headers: Record<string, string> = {};
