@@ -15,7 +15,7 @@ import { getStrapiMedia } from '@/utils/strapi';
 >
   <a href={`/services/${service.slug}`} class='block'>
     <img
-      src={getStrapiMedia(service.image.url)}
+      src={getStrapiMedia(service.image.url) ?? ''}
       alt={service.image.alternativeText || service.title}
       class='w-full h-48 object-cover rounded-t-lg'
     />

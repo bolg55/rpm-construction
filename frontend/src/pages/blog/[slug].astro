@@ -28,12 +28,11 @@ const {
   publishedDate,
   category,
   tags,
-  image,
   minutesRead,
 } = frontmatter;
 ---
 
-<BlogLayout {title} {description} frontmatter={post.data} whiteBG={true}>
+<BlogLayout {title} {description} frontmatter={post.data}>
   <div class='max-w-screen-lg mx-auto'>
     <Button
       type='button'
@@ -51,7 +50,6 @@ const {
     {author}
     {category}
     {tags}
-    {image}
     {minutesRead}
   />
   <article

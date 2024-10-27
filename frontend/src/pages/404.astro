@@ -1,7 +1,5 @@
 ---
-import Sectionhead from '@/components/sectionhead.astro';
 import Link from '@/components/ui/link.astro';
-import MainLayout from '@/layouts/MainLayout.astro';
 import PageLayout from '@/layouts/PageLayout.astro';
 ---
 
@@ -12,8 +10,8 @@ import PageLayout from '@/layouts/PageLayout.astro';
   pageTitle='404'
 >
   <section class='py-32 justify-center w-full flex'>
-    <Link href='/' style='secondary' block={false} class='max-w-screen-sm'>
-      Go back home
-    </Link>
+    <Link href='/' style='secondary' block={false} class='max-w-screen-sm'
+      >Go back home</Link
+    >
   </section>
 </PageLayout>
