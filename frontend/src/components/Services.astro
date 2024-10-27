@@ -1,29 +1,31 @@
 ---
-import ServiceCard from './ServiceCard.astro';
-
-interface Service {
-  id: number;
-  title: string;
-  slug: string;
-  summary: string;
-  image: {
-    url: string;
-    alternativeText?: string;
-  };
-}
+import Sectionhead from './sectionhead.astro';
+import ServiceCard from '../components/react/ServiceCard';
+import BackgroundStyle from './ui/background-style.astro';
+import type { Service } from '@/interfaces';
 
 interface Props {
   services: Service[];
+  title: string;
+  subtitle: string;
 }
 
-const { services } = Astro.props;
+const { services, title, subtitle } = Astro.props;
 ---
 
+<Sectionhead id='services'>
+  <Fragment slot='subtitle'>{subtitle}</Fragment>
+  <Fragment slot='title'>{title}</Fragment>
+</Sectionhead>
 <div class='container mx-auto my-12'>
   <div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'>
     {
       services.map((service, index) => (
-        <ServiceCard service={service} animationDelay={Math.random() * 0.5} />
+        <ServiceCard
+          client:visible
+          service={service}
+          animationDelay={index * 0.1}
+        />
       ))
     }
   </div>

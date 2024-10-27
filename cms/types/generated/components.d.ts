@@ -114,6 +114,12 @@ export interface LayoutAbout extends Struct.ComponentSchema {
   attributes: {
     about: Schema.Attribute.RichText;
     image: Schema.Attribute.Media<'images'>;
+    subtitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'subtitle'>;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'title'>;
   };
 }
 
@@ -174,6 +180,12 @@ export interface LayoutService extends Struct.ComponentSchema {
   };
   attributes: {
     services: Schema.Attribute.Relation<'oneToMany', 'api::service.service'>;
+    subtitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'subtitle'>;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'title'>;
   };
 }
 

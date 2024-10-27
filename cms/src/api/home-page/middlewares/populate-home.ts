@@ -9,6 +9,29 @@ export default (config, { strapi }) => {
           cta: true,
         },
       },
+      about: {
+        populate: {
+          image: {
+            fields: ['url', 'alternativeText'],
+          },
+        },
+      },
+      services: {
+        populate: {
+          services: {
+            populate: {
+              image: {
+                fields: ['url', 'alternativeText'],
+              },
+            },
+          },
+        },
+      },
+      cta: {
+        populate: {
+          link: true,
+        },
+      },
     };
     await next();
   };

@@ -28,6 +28,21 @@
       "default": "description",
       "maxLength": 160,
       "minLength": 3
+    },
+    "about": {
+      "type": "component",
+      "repeatable": false,
+      "component": "layout.about"
+    },
+    "services": {
+      "type": "component",
+      "repeatable": false,
+      "component": "layout.service"
+    },
+    "cta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "layout.cta"
     }
   }
 }

@@ -1,27 +1,17 @@
 ---
-interface Service {
-  id: number;
-  title: string;
-  slug: string;
-  summary: string;
-  image: {
-    url: string;
-    alternativeText?: string;
-  };
-}
-
 interface Props {
   service: Service;
   animationDelay?: number;
 }
 
 const { service, animationDelay = 0 } = Astro.props;
+import type { Service } from '@/interfaces';
 import { getStrapiMedia } from '@/utils/strapi';
 ---
 
 <div
-  class='bg-white rounded-lg shadow hover:shadow-lg transition-shadow duration-300 motion-safe:opacity-0 motion-safe:animate-fadeInUp'
-  style={`animation-delay: ${animationDelay}s;`}
+  class='service-card bg-white rounded-lg shadow hover:shadow-lg transition-shadow duration-300 opacity-0 translate-y-4'
+  data-animation-delay={animationDelay}
 >
   <a href={`/services/${service.slug}`} class='block'>
     <img

@@ -1,15 +1,31 @@
 ---
+import About from '@/components/About.astro';
+import Cta from '@/components/cta.astro';
 import Hero from '@/components/hero.astro';
+import Services from '@/components/Services.astro';
 import MainLayout from '@/layouts/MainLayout.astro';
 import { fetchStrapiData } from '@/queries/strapiQueries';
+
 const data = await fetchStrapiData('/home-page');
-const { title, description, hero } = data;
+const { title, description, hero, about, services, cta } = data;
 ---
 
+<!-- <pre>{JSON.stringify(cta,null,2)}</pre> -->
 <MainLayout
   title={`RPM Construction Ltd. | ${title}`}
   description={description}
 >
-  <!-- <pre>{JSON.stringify(data,null,2)}</pre> -->
   <Hero hero={hero} />
+  <Services
+    services={services.services}
+    title={services.title}
+    subtitle={services.subtitle}
+  />
+  <Cta heading={cta.heading} subHeading={cta.subHeading} link={cta.link} />
+  <About
+    about={about.about}
+    image={about.image}
+    title={about.title}
+    subtitle={about.subtitle}
+  />
 </MainLayout>

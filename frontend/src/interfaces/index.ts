@@ -12,3 +12,14 @@ export interface Testimonial {
   name: string;
   isFeatured: boolean;
 }
+
+export interface Service {
+  id: number;
+  title: string;
+  slug: string;
+  summary: string;
+  image: {
+    url: string;
+    alternativeText?: string;
+  };
+}

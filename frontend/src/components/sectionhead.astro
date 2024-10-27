@@ -1,8 +1,9 @@
 ---
-const { align = 'center' } = Astro.props;
+const { align = 'center', id } = Astro.props;
 ---
 
 <div
+  {id}
   class:list={[
     align === 'center' && 'sm:text-center',
     align === 'left' && 'sm:text-left',

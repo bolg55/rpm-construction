@@ -5,6 +5,7 @@ import {
   type BlogPage,
   type Pagination as PaginationType,
 } from '@/interfaces/blog-interface';
+import Container from '@/layouts/Container.astro';
 import PageLayout from '@/layouts/PageLayout.astro';
 import { formatBlogPosts } from '@/utils/formatBlogPosts';
 import { getCollection, type CollectionEntry } from 'astro:content';
@@ -14,7 +15,7 @@ export const getStaticPaths = async ({ paginate }: PaginationType) => {
   const formattedPosts: CollectionEntry<'blog'>[] = formatBlogPosts(blogPosts, {
     sortByDate: true,
   });
-  return paginate(formattedPosts, { pageSize: 4 });
+  return paginate(formattedPosts, { pageSize: 6 });
 };
 const { page } = Astro.props as { page: BlogPage };
 ---
@@ -26,11 +27,12 @@ const { page } = Astro.props as { page: BlogPage };
   subtitle='Latest Posts'
   whiteBG={true}
 >
-  <ul class='grid gap-16 max-w-4xl mx-auto mt-4 sm:mt-16'>
-    {page?.data.map((post, index) => <Blogcard {post} {index} />)}
-  </ul>
-
-  <div class='text-center mt-24 space-y-4 text-secondary'>
+  <Container>
+    <ul class='grid gap-16 max-w-4xl mx-auto mt-4 sm:mt-16'>
+      {page?.data.map((post, index) => <Blogcard {post} {index} />)}
+    </ul>
+  </Container>
+  <div class='mb-24 text-center mt-24 space-y-4 text-secondary'>
     <Pagination prevUrl={page?.url.prev} nextUrl={page?.url.next} />
     <p class='text-sm'>Page {page?.currentPage} of {page?.lastPage}</p>
   </div>
