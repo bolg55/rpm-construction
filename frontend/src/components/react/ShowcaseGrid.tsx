@@ -48,7 +48,7 @@ const ShowcaseGrid = ({ images, openModal }: Props) => {
     };
   }, [handleObserver]);
   return (
-    <div className='max-w-screen-md lg:mb-32 mx-auto'>
+    <div className='max-w-screen-md lg:mb-32 mx-auto p-4 sm:p0'>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mb-8 mt-16'>
         {visibleImages.map(({ url, alternativeText: alt, id }, index) => (
           <div
