@@ -1,3 +1,5 @@
+import { link } from 'fs';
+
 export default (config, { strapi }) => {
   return async (ctx, next) => {
     ctx.query.populate = {
@@ -30,6 +32,16 @@ export default (config, { strapi }) => {
       cta: {
         populate: {
           link: true,
+        },
+      },
+      bottomCTA: {
+        on: {
+          'layout.service-areas': {
+            populate: {
+              city: true,
+              link: true,
+            },
+          },
         },
       },
     };

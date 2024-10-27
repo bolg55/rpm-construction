@@ -189,6 +189,25 @@ export interface LayoutService extends Struct.ComponentSchema {
   };
 }
 
+export interface LayoutServiceAreas extends Struct.ComponentSchema {
+  collectionName: 'components_layout_service_areas';
+  info: {
+    description: '';
+    displayName: 'serviceAreas';
+  };
+  attributes: {
+    city: Schema.Attribute.Relation<'oneToMany', 'api::city-town.city-town'>;
+    link: Schema.Attribute.Component<'ui.link', false>;
+    mapUrl: Schema.Attribute.String;
+    subtitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'subtitle'>;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Areas we service'>;
+  };
+}
+
 export interface LayoutShowcase extends Struct.ComponentSchema {
   collectionName: 'components_layout_showcases';
   info: {
@@ -338,6 +357,7 @@ declare module '@strapi/strapi' {
       'layout.cta': LayoutCta;
       'layout.hero': LayoutHero;
       'layout.service': LayoutService;
+      'layout.service-areas': LayoutServiceAreas;
       'layout.showcase': LayoutShowcase;
       'layout.testimonial': LayoutTestimonial;
       'ui.button': UiButton;
