@@ -58,7 +58,7 @@ const ShowcaseGrid = ({ images, openModal }: Props) => {
 
           return (
             <div
-              className='aspect-h-4 aspect-w-4 overflow-hidden'
+              className='aspect-h-4 aspect-w-4 hover:cursor-pointer hover:shadow hover:scale-95 transition-all duration-300'
               key={imageIndex}
               onClick={() => openModal(imageIndex)}
               style={{ animationDelay: `${idx * 100}ms` }}
@@ -77,7 +77,12 @@ const ShowcaseGrid = ({ images, openModal }: Props) => {
           ref={loadMoreRef}
           className='h-10 flex justify-center items-center'
         >
-          <p>Loading more images...</p>
+          <div className='flex items-center space-x-2'>
+            <div className='h-5 w-5 animate-spin rounded-full border-2 border-gray-400 border-t-accent'></div>
+            <span className='text-text-secondary font-medium'>
+              Loading more...
+            </span>
+          </div>
         </div>
       )}
     </div>
