@@ -1,5 +1,6 @@
 ---
 import Cta from '@/components/cta.astro';
+import Link from '@/components/ui/link.astro';
 import PageLayout from '@/layouts/PageLayout.astro';
 import { fetchStrapiData } from '@/queries/strapiQueries';
 import { getStrapiMedia } from '@/utils/strapi';
@@ -18,6 +19,7 @@ export const getStaticPaths = async () => {
 interface Props {
   page: {
     title: string;
+    slug: string;
     summary: string;
     description: string;
     pageTitle: string;
@@ -42,7 +44,8 @@ interface Props {
 }
 const { page } = Astro.props;
 
-const { title, summary, description, pageTitle, subtitle, image, cta } = page;
+const { title, slug, summary, description, pageTitle, subtitle, image, cta } =
+  page;
 ---
 
 <PageLayout
@@ -50,6 +53,7 @@ const { title, summary, description, pageTitle, subtitle, image, cta } = page;
   description={summary}
   pageTitle={pageTitle}
   subtitle={subtitle}
+  transition:name={slug}
 >
   <div class='overflow-hidden pb-24 pt-8 sm:py-32'>
     <div class='mx-auto max-w-7xl px-6 lg:px-8'>
@@ -64,6 +68,7 @@ const { title, summary, description, pageTitle, subtitle, image, cta } = page;
           </div>
         </div>
         <Image
+          transition:name={`service-image-${image.url}`}
           src={getStrapiMedia(image.url) ?? ''}
           alt={image.alternativeText || title}
           width={1216}
@@ -72,6 +77,11 @@ const { title, summary, description, pageTitle, subtitle, image, cta } = page;
         />
       </div>
     </div>
+  </div>
+  <div class='flex w-full justify-center'>
+    <Link href='/services' style='plain' block={false} class='max-w-52'>
+      &LeftArrow; Back to Services
+    </Link>
   </div>
 
   <Cta heading={cta.title} subHeading={cta.subtitle} link={cta.link} />
