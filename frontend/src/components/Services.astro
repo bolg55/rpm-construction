@@ -19,7 +19,7 @@ const isSlugInPath = slug ? pathname.includes(slug) : false;
 
 {
   isSlugInPath ? (
-    <div class='container  mx-auto my-12'>
+    <div class='container p-4 mx-auto my-12'>
       <div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'>
         {services.map((service) => (
           <AstroServiceCard {service} />
