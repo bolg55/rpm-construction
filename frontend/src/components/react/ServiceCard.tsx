@@ -1,6 +1,6 @@
 import type { Service } from '@/interfaces';
-import { getStrapiMedia } from '@/utils/strapi';
 import { motion } from 'framer-motion';
+import ImageComponent from './ImageComponent';
 
 const ServiceCard = ({
   service,
@@ -26,12 +26,13 @@ const ServiceCard = ({
       }}
     >
       <a href={`/services/${service.slug}`} className='block'>
-        <img
-          src={getStrapiMedia(service.image.url) ?? ''}
+        <ImageComponent
+          src={service.image.url}
           alt={service.image.alternativeText || service.title}
-          className='w-full h-48 object-cover rounded-t-lg'
           loading='lazy'
+          className='w-full h-48 object-cover rounded-t-lg'
         />
+
         <div className='p-4'>
           <h3 className='text-xl font-semibold font-heading mb-2'>
             {service.title}

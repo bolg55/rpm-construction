@@ -20,9 +20,9 @@ const HeroText = ({ heading, subheading, cta }: HeroTextProps) => {
       transition: {
         duration: 0.5,
         ease: 'easeOut',
-        when: 'beforeChildren',
-        staggerChildren: 0.3,
-        delayChildren: 0.5,
+        // when: 'beforeChildren',
+        staggerChildren: 0.13,
+        delayChildren: 0.25,
       },
     },
   };
@@ -33,7 +33,7 @@ const HeroText = ({ heading, subheading, cta }: HeroTextProps) => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.35,
         ease: 'easeOut',
       },
     },

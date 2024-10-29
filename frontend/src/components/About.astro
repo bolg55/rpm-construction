@@ -1,11 +1,10 @@
 ---
-import { getStrapiMedia } from '@/utils/strapi';
 import { Markdown } from 'astro-remote';
 
-import { Image } from 'astro:assets';
-import BackgroundStyle from './ui/background-style.astro';
 import Container from '@/layouts/Container.astro';
+import OptimizedImage from './OptimizedImage.astro';
 import Sectionhead from './sectionhead.astro';
+import BackgroundStyle from './ui/background-style.astro';
 const { about, image, subtitle, title } = Astro.props;
 const { url, alternativeText } = image;
 ---
@@ -27,11 +26,10 @@ const { url, alternativeText } = image;
             <Markdown content={about} />
           </article>
         </div>
-        <Image
-          src={getStrapiMedia(url) ?? ''}
-          alt={alternativeText || ''}
-          width={1216}
-          height={721}
+        <OptimizedImage
+          src={url}
+          alt={alternativeText}
+          loading='lazy'
           class='mt-10 mx-auto aspect-[7/5] w-full rounded-2xl object-cover sm:mt-16 lg:mt-20 lg:max-w-none xl:row-span-2 xl:row-end-2 2xl:mt-36'
         />
       </div>

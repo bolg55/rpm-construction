@@ -1,5 +1,5 @@
-import { getStrapiMedia } from '@/utils/strapi';
 import { motion } from 'framer-motion';
+import ImageComponent from './ImageComponent';
 
 interface Image {
   url: string;
@@ -16,7 +16,7 @@ const HeroImages = ({ images }: HeroImagesProps) => {
     hidden: {},
     visible: (delay = 0) => ({
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.12,
         delayChildren: delay,
       },
     }),
@@ -31,7 +31,7 @@ const HeroImages = ({ images }: HeroImagesProps) => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.35,
         ease: 'easeOut',
       },
     },
@@ -53,11 +53,13 @@ const HeroImages = ({ images }: HeroImagesProps) => {
       >
         {group1.map((image, index) => (
           <motion.div className='relative' key={index} variants={imageVariants}>
-            <img
-              src={getStrapiMedia(image.url) ?? ''}
+            <ImageComponent
+              src={image.url}
               alt={image.alternativeText || 'Hero Image'}
-              className='aspect-[2/3] w-full rounded-xl object-cover shadow-lg'
+              loading='eager'
+              className='aspect-[2/3] w-full h-auto rounded-xl object-cover shadow-lg'
             />
+
             <div className='absolute inset-0 rounded-xl ring-1 ring-gray-900/10'></div>
           </motion.div>
         ))}
@@ -69,14 +71,15 @@ const HeroImages = ({ images }: HeroImagesProps) => {
         variants={containerVariants}
         initial='hidden'
         animate='visible'
-        custom={0.3} // Delay the start of this group's animation
+        custom={0.15} // Delay the start of this group's animation
       >
         {group2.map((image, index) => (
           <motion.div className='relative' key={index} variants={imageVariants}>
-            <img
-              src={getStrapiMedia(image.url) ?? ''}
+            <ImageComponent
+              src={image.url}
               alt={image.alternativeText || 'Hero Image'}
-              className='aspect-[2/3] w-full rounded-xl object-cover shadow-lg'
+              loading='eager'
+              className='aspect-[2/3] w-full h-auto rounded-xl object-cover shadow-lg'
             />
             <div className='absolute inset-0 rounded-xl ring-1 ring-gray-900/10'></div>
           </motion.div>
@@ -89,14 +92,15 @@ const HeroImages = ({ images }: HeroImagesProps) => {
         variants={containerVariants}
         initial='hidden'
         animate='visible'
-        custom={0.6} // Further delay
+        custom={0.3} // Further delay
       >
         {group3.map((image, index) => (
           <motion.div className='relative' key={index} variants={imageVariants}>
-            <img
-              src={getStrapiMedia(image.url) ?? ''}
+            <ImageComponent
+              src={image.url}
               alt={image.alternativeText || 'Hero Image'}
-              className='aspect-[2/3] w-full rounded-xl object-cover shadow-lg'
+              loading='eager'
+              className='aspect-[2/3] w-full h-auto rounded-xl object-cover shadow-lg'
             />
             <div className='absolute inset-0 rounded-xl ring-1 ring-gray-900/10'></div>
           </motion.div>

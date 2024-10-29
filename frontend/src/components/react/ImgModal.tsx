@@ -1,10 +1,10 @@
-import { getStrapiMedia } from '@/utils/strapi';
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 import { useEffect } from 'react';
+import ImageComponent from './ImageComponent';
 
 interface ImgModalProps {
   isOpen: boolean;
@@ -70,11 +70,12 @@ const ImgModal = ({
         </div>
 
         {/* Image */}
-        <div className='flex-1 flex items-center justify-center bg-black'>
-          <img
-            className='max-w-sm md:max-w-screen-sm lg:max-w-screen-md object-contain'
-            src={getStrapiMedia(images[currentIndex].url) ?? ''}
+        <div className='flex-1 flex items-center justify-center'>
+          <ImageComponent
+            src={images[currentIndex].url}
             alt={images[currentIndex].alternativeText || 'Gallery Image'}
+            loading='lazy'
+            className='max-w-sm md:max-w-screen-sm lg:max-w-screen-md object-contain'
           />
         </div>
 

@@ -1,11 +1,10 @@
 ---
 import Cta from '@/components/cta.astro';
+import OptimizedImage from '@/components/OptimizedImage.astro';
 import Link from '@/components/ui/link.astro';
 import PageLayout from '@/layouts/PageLayout.astro';
 import { fetchStrapiData } from '@/queries/strapiQueries';
-import { getStrapiMedia } from '@/utils/strapi';
 import { Markdown } from 'astro-remote';
-import { Image } from 'astro:assets';
 
 export const getStaticPaths = async () => {
   const pages = await fetchStrapiData('/services');
@@ -67,12 +66,10 @@ const { title, slug, summary, description, pageTitle, subtitle, image, cta } =
             </article>
           </div>
         </div>
-        <Image
-          transition:name={`service-image-${image.url}`}
-          src={getStrapiMedia(image.url) ?? ''}
+        <OptimizedImage
+          src={image.url}
           alt={image.alternativeText || title}
-          width={1216}
-          height={721}
+          transition:name={`service-image-${image.url}`}
           class='mt-10 mx-auto aspect-[7/5] w-full rounded-2xl object-cover sm:mt-16 lg:mt-0 lg:max-w-none xl:row-span-2 xl:row-end-2xl:mt-36'
         />
       </div>

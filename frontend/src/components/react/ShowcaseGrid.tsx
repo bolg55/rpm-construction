@@ -1,5 +1,5 @@
-import { getStrapiMedia } from '@/utils/strapi';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import ImageComponent from './ImageComponent';
 
 interface Props {
   images: {
@@ -63,10 +63,11 @@ const ShowcaseGrid = ({ images, openModal }: Props) => {
               onClick={() => openModal(imageIndex)}
               style={{ animationDelay: `${idx * 100}ms` }}
             >
-              <img
-                className='object-cover rounded-lg'
-                src={getStrapiMedia(url) ?? ''}
+              <ImageComponent
+                src={url}
                 alt={alt || 'RPM Construction'}
+                loading='lazy'
+                className='object-cover rounded-lg'
               />
             </div>
           );
