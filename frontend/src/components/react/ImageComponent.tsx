@@ -1,5 +1,5 @@
 import { getStrapiMedia } from '@/utils/strapi';
-import React from 'react';
+import React, { useState } from 'react';
 
 interface ImageComponentProps
   extends React.ImgHTMLAttributes<HTMLImageElement> {
@@ -29,18 +29,31 @@ const ImageComponent = ({
     )
     .join(', ');
 
+  const lowQualitySrc = getStrapiMedia(src)?.replace(
+    '/upload/',
+    `/upload/e_blur:200,q_1/`
+  );
+
   const optimizedSrc = getStrapiMedia(src)?.replace(
     '/upload/',
     `/upload/w_${width},q_${quality},f_${format},dpr_auto/`
   );
 
+  const [imgSrc, setImgSrc] = useState(lowQualitySrc);
+
+  // Handle image load event to swap to full-quality
+  const handleImageLoad = () => {
+    setImgSrc(optimizedSrc);
+  };
+
   return (
     <img
-      src={optimizedSrc}
+      src={imgSrc}
       srcSet={srcSet}
       sizes='(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw'
       alt={alt}
       loading={loading}
+      onLoad={handleImageLoad}
       {...props}
     />
   );
