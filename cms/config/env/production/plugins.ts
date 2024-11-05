@@ -14,4 +14,7 @@ export default ({ env }) => ({
       },
     },
   },
+  'get-strapi-schema': {
+    enabled: true,
+  },
 });
