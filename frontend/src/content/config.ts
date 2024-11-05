@@ -1,3 +1,5 @@
+import { fetchStrapiData } from '@/queries/strapiQueries';
+import { strapiLoader } from '@/utils/strapiLoader';
 import { defineCollection, z } from 'astro:content';
 
 const blogCollection = defineCollection({
@@ -36,7 +38,12 @@ const showcaseCollection = defineCollection({
   }),
 });
 
+const articles = defineCollection({
+  loader: strapiLoader({ contentType: 'article' }),
+});
+
 export const collections = {
+  articles,
   blog: blogCollection,
   legal: legalCollection,
   showcase: showcaseCollection,
