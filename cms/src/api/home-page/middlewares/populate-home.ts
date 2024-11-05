@@ -1,5 +1,3 @@
-import { link } from 'fs';
-
 export default (config, { strapi }) => {
   return async (ctx, next) => {
     ctx.query.populate = {
