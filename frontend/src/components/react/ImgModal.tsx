@@ -54,7 +54,7 @@ const ImgModal = ({
       ></div>
 
       {/* Modal content */}
-      <div className='relative z-10 max-w-screen-sm lg:max-w-screen-md max-h-[90vh] w-full mx-4 bg-white rounded-lg overflow-hidden shadow-xl flex flex-col'>
+      <div className='relative z-10 max-w-screen-sm lg:max-w-screen-md max-h-[90vh] w-full mx-4 bg-black rounded-lg overflow-hidden shadow-xl flex flex-col'>
         {/* Header with Close button */}
         <div className='flex justify-between items-center p-2 bg-gray-100'>
           <h2 className='text-sm font-medium text-gray-900' id='modal-title'>
@@ -75,7 +75,7 @@ const ImgModal = ({
             src={images[currentIndex].url}
             alt={images[currentIndex].alternativeText || 'Gallery Image'}
             loading='lazy'
-            className='max-w-sm md:max-w-screen-sm lg:max-w-screen-md object-contain'
+            className='max-w-sm h-[74vh] md:max-w-screen-sm lg:max-w-screen-md object-contain'
           />
         </div>
 
