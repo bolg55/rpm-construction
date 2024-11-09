@@ -16,7 +16,7 @@ interface StrapiLoaderOptions {
 
 export function strapiLoader({
   contentType,
-  strapiUrl = process.env.PUBLIC_STRAPI_URL || 'http://localhost:1337',
+  strapiUrl = import.meta.env.PUBLIC_STRAPI_URL || 'http://localhost:1337',
   syncInterval = 60 * 1000,
 }: StrapiLoaderOptions): Loader {
   checkEnvironmentVariables(strapiUrl);
