@@ -1,5 +1,6 @@
 ---
 import Blogcard from '@/components/blogcard.astro';
+import Cta from '@/components/cta.astro';
 import Pagination from '@/components/ui/pagination.astro';
 import {
   type BlogPage,
@@ -7,8 +8,14 @@ import {
 } from '@/interfaces/blog-interface';
 import Container from '@/layouts/Container.astro';
 import PageLayout from '@/layouts/PageLayout.astro';
+import { fetchStrapiData } from '@/queries/strapiQueries';
 import { formatBlogPosts } from '@/utils/formatBlogPosts';
 import { getCollection, type CollectionEntry } from 'astro:content';
+
+const pages = await fetchStrapiData('/pages');
+const blogPageData = pages.find(
+  (page: { slug: string }) => page.slug === 'blog'
+);
 
 export const getStaticPaths = async ({ paginate }: PaginationType) => {
   const blogPosts = await getCollection('articles');
@@ -18,16 +25,18 @@ export const getStaticPaths = async ({ paginate }: PaginationType) => {
       sortByDate: true,
     }
   );
-  return paginate(formattedPosts, { pageSize: 6 });
+  return paginate(formattedPosts, { pageSize: 9 });
 };
 const { page } = Astro.props as { page: BlogPage };
+const { title, description, pageTitle, subtitle, dynamicPageSection } =
+  blogPageData;
 ---
 
 <PageLayout
-  title='RPM | Blog'
-  description='Read the latest articles from the RPM blog.'
-  pageTitle='Blog'
-  subtitle='Read the latest articles from the RPM blog'
+  title=`RPM | ${title}`
+  description={description}
+  pageTitle={pageTitle}
+  subtitle={subtitle}
 >
   <Container>
     <ul class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
@@ -38,4 +47,22 @@ const { page } = Astro.props as { page: BlogPage };
     <Pagination prevUrl={page?.url.prev} nextUrl={page?.url.next} />
     <p class='text-sm'>Page {page?.currentPage} of {page?.lastPage}</p>
   </div>
+  {
+    dynamicPageSection.map((block: any) => {
+      switch (block.__component) {
+        case 'layout.cta':
+          return (
+            <Cta
+              heading={block.heading}
+              subHeading={block.subHeading}
+              link={block.link}
+            />
+          );
+        // Handle other components as needed
+        default:
+          console.warn(`Unknown component type: ${block.__component}`);
+          return null;
+      }
+    })
+  }
 </PageLayout>
