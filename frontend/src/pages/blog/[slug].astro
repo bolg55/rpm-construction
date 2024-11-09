@@ -15,18 +15,22 @@ export const getStaticPaths = async () => {
   }));
 };
 
-interface Props {
-  frontmatter: { minutesRead: string };
-  post: CollectionEntry<'articles'>;
-}
-
 const { post } = Astro.props;
-const minutesRead = getReadingTime(post.data.content);
+const minutesRead = getReadingTime(post.data.content) ?? '0';
 
 const { title, description, author, content, image, publishedAt } = post.data;
 ---
 
-<BlogLayout {title} {description} frontmatter={post.data}>
+<BlogLayout
+  id={post.id}
+  {title}
+  {description}
+  frontmatter={{
+    id: post.id,
+    collection: 'articles' as const,
+    data: post.data,
+  }}
+>
   <div class='max-w-screen-lg mx-auto'>
     <Button
       type='button'
@@ -43,15 +47,9 @@ const { title, description, author, content, image, publishedAt } = post.data;
       class='w-full h-96 object-cover mt-6'
     />
   </div>
-  <PostHeader
-    {title}
-    {description}
-    {publishedAt}
-    author={author.fullName}
-    {minutesRead}
-  />
+  <PostHeader {title} {description} {publishedAt} {author} {minutesRead} />
   <article
-    class='mx-auto md:prose-lg mt-6 max-w-screen-lg prose prose-a:text-accent prose-a:no-underline hover:prose-a:text-accent transition'
+    class='mx-auto md:prose-lg mt-6 max-w-screen-lg prose prose-a:text-accent prose-a:no-underline hover:prose-a:text-accent transition mb-8 sm:mb-16 lg:mb-24'
   >
     <Markdown content={content} />
   </article>

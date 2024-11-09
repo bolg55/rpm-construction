@@ -10,6 +10,13 @@ export default (config, { strapi }) => {
           image: {
             fields: ['url', 'alternativeText'],
           },
+          articles: {
+            populate: {
+              image: {
+                fields: ['url', 'alternativeText'],
+              },
+            },
+          },
         },
       },
     };

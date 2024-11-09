@@ -1,9 +1,9 @@
 ---
-import type { Post } from '@/interfaces/blog-interface';
 import { fetchStrapiData } from '@/queries/strapiQueries';
 import TwSizeIndicator from '@/utils/TwSizeIndicator.astro';
 import '@fontsource-variable/inter';
 import '@fontsource-variable/montserrat';
+import type { CollectionEntry } from 'astro:content';
 import Footer from './Footer.astro';
 import Head from './Head.astro';
 import Navbar from './navbar/navbar.astro';
@@ -12,7 +12,7 @@ interface Props {
   title: string;
   description: string;
   image?: { src: string; alt: string };
-  frontmatter?: Post;
+  frontmatter?: CollectionEntry<'articles'>;
   robots?: boolean;
 }
 

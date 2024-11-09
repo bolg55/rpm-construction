@@ -1,8 +1,12 @@
-import type { Post } from '@/interfaces/blog-interface';
 import { fetchStrapiData } from '@/queries/strapiQueries';
+import type { CollectionEntry } from 'astro:content';
 
 const data = await fetchStrapiData('/global');
 const { seo } = data;
+
+interface Author {
+  fullName: string;
+}
 
 const jsonLDGenerator = ({
   type,
@@ -10,11 +14,11 @@ const jsonLDGenerator = ({
   url,
 }: {
   type: string;
-  post: Post;
+  post: CollectionEntry<'articles'> & { data: { author: Author } };
   url: string;
 }) => {
   if (type === 'post') {
-    const { title, description, publishedAt, image, author } = post;
+    const { title, description, publishedAt, image, author } = post.data;
     return `<script type="application/ld+json">
           {
                   "@context": "https://schema.org",
@@ -28,7 +32,7 @@ const jsonLDGenerator = ({
                   "image": "${image.url}",
                   "author": {
                       "@type": "Person",
-                      "name": "${author.fullName}"
+                      "name": "${author?.fullName}"
                   },
 
                   "datePublished": "${publishedAt}"

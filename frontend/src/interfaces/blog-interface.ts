@@ -24,27 +24,3 @@ export interface Pagination {
     };
   }>;
 }
-
-export interface Post {
-  title: string;
-  description: string;
-  createdAt: string | Date;
-  updatedAt: string | Date;
-  publishedAt: string | Date;
-  content: string;
-  slug: string;
-  image: {
-    id: number;
-    url?: string;
-    alternativeText?: string;
-  };
-  author: {
-    id: number;
-    fullName: string;
-    image?: {
-      id: number;
-      url?: string;
-      alternativeText?: string;
-    };
-  };
-}

@@ -1,5 +1,5 @@
 ---
-const { title, author, publishedAt, category, tags, minutesRead } = Astro.props;
+const { title, author, publishedAt, category, minutesRead } = Astro.props;
 import { formatDate } from '@/utils/formatDate';
 
 const date = formatDate(publishedAt);
@@ -17,7 +17,7 @@ const date = formatDate(publishedAt);
   <span class='text-primary'>{minutesRead}</span>
   <div class='flex gap-2 mt-3 items-center flex-wrap md:flex-nowrap'>
     <span class='text-primary'>
-      {author}
+      {author.fullName}
     </span>
     <span class='text-primary'>•</span>
     <time class='text-primary' datetime={date}>

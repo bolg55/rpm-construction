@@ -7,7 +7,6 @@ import {
 } from '@/interfaces/blog-interface';
 import Container from '@/layouts/Container.astro';
 import PageLayout from '@/layouts/PageLayout.astro';
-import { fetchStrapiData } from '@/queries/strapiQueries';
 import { formatBlogPosts } from '@/utils/formatBlogPosts';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
@@ -26,9 +25,9 @@ const { page } = Astro.props as { page: BlogPage };
 
 <PageLayout
   title='RPM | Blog'
-  description='This is the Blog'
+  description='Read the latest articles from the RPM blog.'
   pageTitle='Blog'
-  subtitle='Latest Posts'
+  subtitle='Read the latest articles from the RPM blog'
 >
   <Container>
     <ul class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
