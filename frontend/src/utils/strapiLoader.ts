@@ -169,8 +169,20 @@ async function fetchFromStrapi(
     });
   }
 
+  const apiToken = import.meta.env.STRAPI_API_TOKEN;
+
+  if (!apiToken) {
+    throw new Error(
+      'STRAPI_API_TOKEN is not set. Please provide it in your environment.'
+    );
+  }
+
   try {
-    const response = await fetch(url.href);
+    const response = await fetch(url.href, {
+      headers: {
+        Authorization: `Bearer ${apiToken}`,
+      },
+    });
     if (!response.ok) {
       throw new Error(`Failed to fetch from Strapi: ${response.statusText}`);
     }
