@@ -1,35 +1,29 @@
 ---
+import OptimizedImage from '@/components/OptimizedImage.astro';
 import PostHeader from '@/components/postheader.astro';
 import Button from '@/components/ui/button.astro';
 import BlogLayout from '@/layouts/BlogLayout.astro';
+import { getReadingTime } from '@/utils/readingTime';
+import { Markdown } from 'astro-remote';
 import { type CollectionEntry, getCollection } from 'astro:content';
 
 export const getStaticPaths = async () => {
-  const blogEntries = await getCollection('blog');
-  return blogEntries.map((post: CollectionEntry<'blog'>) => ({
-    params: { slug: post.slug },
+  const blogEntries = await getCollection('articles');
+  return blogEntries.map((post: CollectionEntry<'articles'>) => ({
+    params: { slug: post.data.slug },
     props: { post },
   }));
 };
 
 interface Props {
   frontmatter: { minutesRead: string };
-  post: CollectionEntry<'blog'>;
+  post: CollectionEntry<'articles'>;
 }
 
 const { post } = Astro.props;
+const minutesRead = getReadingTime(post.data.content);
 
-const { Content, remarkPluginFrontmatter: frontmatter } = await post.render();
-
-const {
-  title,
-  description,
-  author,
-  publishedDate,
-  category,
-  tags,
-  minutesRead,
-} = frontmatter;
+const { title, description, author, content, image, publishedAt } = post.data;
 ---
 
 <BlogLayout {title} {description} frontmatter={post.data}>
@@ -42,19 +36,23 @@ const {
     >
       &larr; Back to blog
     </Button>
+    <OptimizedImage
+      src={image.url}
+      alt={image.alternativeText ?? ''}
+      layout='responsive'
+      class='w-full h-96 object-cover mt-6'
+    />
   </div>
   <PostHeader
     {title}
     {description}
-    {publishedDate}
-    {author}
-    {category}
-    {tags}
+    {publishedAt}
+    author={author.fullName}
     {minutesRead}
   />
   <article
     class='mx-auto md:prose-lg mt-6 max-w-screen-lg prose prose-a:text-accent prose-a:no-underline hover:prose-a:text-accent transition'
   >
-    <Content />
+    <Markdown content={content} />
   </article>
 </BlogLayout>

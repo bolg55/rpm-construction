@@ -1,6 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import { remarkReadingTime } from './src/utils/readingTime';
+
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
@@ -14,7 +14,7 @@ export default defineConfig({
   site: 'https://rpmconstructionltd.com',
   integrations: [react(), tailwind(), sitemap(), robotsTxt(), icon(), mdx()],
   markdown: {
-    remarkPlugins: [remarkReadingTime, remarkGfm],
+    remarkPlugins: [remarkGfm],
     rehypePlugins: [],
   },
   experimental: {

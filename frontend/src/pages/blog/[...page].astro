@@ -7,28 +7,32 @@ import {
 } from '@/interfaces/blog-interface';
 import Container from '@/layouts/Container.astro';
 import PageLayout from '@/layouts/PageLayout.astro';
+import { fetchStrapiData } from '@/queries/strapiQueries';
 import { formatBlogPosts } from '@/utils/formatBlogPosts';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 export const getStaticPaths = async ({ paginate }: PaginationType) => {
-  const blogPosts = await getCollection('blog');
-  const formattedPosts: CollectionEntry<'blog'>[] = formatBlogPosts(blogPosts, {
-    sortByDate: true,
-  });
+  const blogPosts = await getCollection('articles');
+  const formattedPosts: CollectionEntry<'articles'>[] = formatBlogPosts(
+    blogPosts,
+    {
+      sortByDate: true,
+    }
+  );
   return paginate(formattedPosts, { pageSize: 6 });
 };
 const { page } = Astro.props as { page: BlogPage };
 ---
 
 <PageLayout
-  title='Blog'
+  title='RPM | Blog'
   description='This is the Blog'
   pageTitle='Blog'
   subtitle='Latest Posts'
 >
   <Container>
-    <ul class='grid gap-16 max-w-4xl mx-auto mt-4 sm:mt-16'>
-      {page?.data.map((post, index) => <Blogcard {post} {index} />)}
+    <ul class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+      {page?.data.map((post, index) => <Blogcard post={post.data} {index} />)}
     </ul>
   </Container>
   <div class='mb-24 text-center mt-24 space-y-4 text-secondary'>

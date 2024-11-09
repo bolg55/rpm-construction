@@ -14,7 +14,7 @@ const jsonLDGenerator = ({
   url: string;
 }) => {
   if (type === 'post') {
-    const { title, description, publishedDate, image, author } = post;
+    const { title, description, publishedAt, image, author } = post;
     return `<script type="application/ld+json">
           {
                   "@context": "https://schema.org",
@@ -25,13 +25,13 @@ const jsonLDGenerator = ({
                   },
                   "headline": "${title}",
                   "description": "${description}",
-                  "image": "${image.src}",
+                  "image": "${image.url}",
                   "author": {
                       "@type": "Person",
-                      "name": "${author}"
+                      "name": "${author.fullName}"
                   },
 
-                  "datePublished": "${publishedDate}"
+                  "datePublished": "${publishedAt}"
 
               }
               </script>`;

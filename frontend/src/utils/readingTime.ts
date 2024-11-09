@@ -1,12 +1,16 @@
-import getReadingTime from 'reading-time';
+import calculateReadingTime from 'reading-time';
+import { fromMarkdown } from 'mdast-util-from-markdown';
 import { toString } from 'mdast-util-to-string';
 
-export const remarkReadingTime = () => {
-  return (tree: unknown, { data }: any) => {
-    const textOnPage = toString(tree);
-    const readingTime = getReadingTime(textOnPage);
-    // readingTime will give us minutes read as a friendly string,
-    // e.g. "1 min read"
-    data.astro.frontmatter.minutesRead = readingTime.text;
-  };
+export const getReadingTime = (text: string): string | undefined => {
+  if (!text || !text.length) return undefined;
+  try {
+    const { minutes } = calculateReadingTime(toString(fromMarkdown(text)));
+    if (minutes && minutes > 0) {
+      return `${Math.ceil(minutes)} min read`;
+    }
+    return undefined;
+  } catch (e) {
+    return undefined;
+  }
 };

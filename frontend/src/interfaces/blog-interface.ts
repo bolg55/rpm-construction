@@ -1,7 +1,7 @@
 import type { CollectionEntry } from 'astro:content';
 
 export interface BlogPage {
-  data: CollectionEntry<'blog'>[];
+  data: CollectionEntry<'articles'>[];
   currentPage: number;
   lastPage: number;
   url: {
@@ -12,10 +12,10 @@ export interface BlogPage {
 
 export interface Pagination {
   paginate: (
-    collection: CollectionEntry<'blog'>[],
+    collection: CollectionEntry<'articles'>[],
     options: { pageSize: number }
   ) => Promise<{
-    data: CollectionEntry<'blog'>[];
+    data: CollectionEntry<'articles'>[];
     currentPage: number;
     lastPage: number;
     url: {
@@ -28,12 +28,23 @@ export interface Pagination {
 export interface Post {
   title: string;
   description: string;
-  publishedDate?: string | Date;
+  createdAt: string | Date;
+  updatedAt: string | Date;
+  publishedAt: string | Date;
+  content: string;
+  slug: string;
   image: {
-    src?: string;
-    alt?: string;
+    id: number;
+    url?: string;
+    alternativeText?: string;
   };
-  author: string;
-  isDraft?: boolean;
-  tags?: string[];
+  author: {
+    id: number;
+    fullName: string;
+    image?: {
+      id: number;
+      url?: string;
+      alternativeText?: string;
+    };
+  };
 }
