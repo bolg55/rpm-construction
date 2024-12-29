@@ -77,11 +77,11 @@ const { footer, socialMedia, companyName, address } = Astro.props;
           </div>
           <!-- Business Address -->
           <address class='not-italic text-footer-text'>
-            <p>{address.streetAddress}</p>
-            {address.address2 && <p>{address.streetAddress2}</p>}
+            <!-- <p>{address.streetAddress}</p>
+            {address.address2 && <p>{address.streetAddress2}</p>} -->
             <p>
-              {address.city}, {address.province}{' '}
-              {address.postal}
+              {address.city}, {address.province}
+              <!-- {address.postal} -->
             </p>
 
             {address.phone && <p>{address.phone}</p>}
